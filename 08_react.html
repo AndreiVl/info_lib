@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" href="images/favicon.ico">
+      <title>Миксины по pug</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/vs2015.min.css">
+      <link href="css/jquery.modal.min.css" rel="stylesheet">
+      <link href="css/prism.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script><!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    </head>
+  <body>
+    <div class="wrapper">
+            <section class="page-info">
+              <div class="page-info__sidebar">
+                <div class="page-info__wrapper-menu">
+                  <div class="page-info__menu">
+                    <h2 class="page-info__title">Меню</h2>
+                    <ol class="page-info__menu-list">
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-1">Старт Template</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-2">Старт Stories</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-3">Цикл</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-4">Работа с классами</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-5">Передача текста в данных</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-6">Работа с объектами</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-7">Стили через переменные</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-8">Передача картинок</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-9">Icon svg</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-10">Типы данных</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-11">Интерфейсы</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-12">Компонент с html атрибутами, которые можно передовать как данные</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-13">Базрвый компонент - компонент из базового.</a></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <div class="page-info__body">
+                <h2 id="page-info-react-1">Старт Template</h2>
+                <p>Старт Template One
+                  <pre><code class="language-jsx">import React from 'react';
+import './class.scss';
+
+export const Name = ({
+children,
+}) => (
+	&lt;div className='' &gt;
+		{children}
+	&lt;/div&gt;
+);</code></pre>
+                </p>
+                <p>Старт Template с передачей класса
+                  <pre><code class="language-jsx">import React from 'react';
+import './class.scss';
+
+export const Name = ({
+className,
+children,
+}) => (
+	&lt;div className={`class ${className || ""}`}&gt;
+		{children}
+	&lt;/div&gt;
+);</code></pre>
+                </p>
+                <p> Старт Template Props
+                  <pre><code class="language-jsx">import * as React from 'react'
+import './class.scss'
+
+type NameProps = {
+
+}
+
+export const Name: React.FC&lt;NameProps&gt; = ({
+...props
+}) => {
+	return (
+		&lt;div className="class" {...props}&gt;
+
+		&lt;/div&gt;
+	);
+};</code></pre>
+                </p>
+                <p>Старт Template StyleCss
+                  <pre><code class="language-jsx">import React from 'react'
+import styled from 'styled-components'
+
+
+const ListStatItemStyle = styled.div`
+
+`
+
+interface ItemStatProps {
+	title: string,
+	value: React.ReactNode
+}
+
+export function ItemStat({
+	title,
+	value
+}: ItemStatProps) {
+	return (
+		&lt;ListStatItemStyle&gt;
+
+		&lt;/ListStatItemStyle&gt;
+	)
+}
+</code></pre>
+                </p>
+                <h2 id="page-info-react-2">Старт Stories</h2>
+                <p>
+                  <pre><code class="language-jsx">import React from 'react';
+import { Name } from './Name';
+
+export default {
+	title: 'Components/Name',
+	component: Name,
+};
+
+export const NameDefault = () => (
+	&lt;Name /&gt;
+);</code></pre>
+                </p>
+                <p>В Stories передача данныx Оnclick
+                  <pre><code class="language-jsx">&lt;Item onClick={() => {}}&gt;
+</code></pre>
+                </p>
+                <h2 id="page-info-react-3">Цикл</h2>
+                <p>Простой
+                  <pre><code class="language-jsx">numbers.map((number) =>
+	&lt;li&gt;{number}&lt;/li&gt;
+);</code></pre>
+                </p>
+                <p>Передача данных у компонента в цикле
+                  <pre><code class="language-jsx">{items.map((item, index) => (
+	&lt;ItemBalance
+		number={item.number}
+		currency={item.currency}
+	/&gt;
+))}</code></pre>
+                </p>
+                <p>Цикл TS
+                  <pre><code class="language-jsx">type ListProps = {
+items: string[]
+}
+
+export const List: React.FC&lt;ListProps&gt; = ({
+items = [],
+})
+
+{items.map((item, index) => (
+	&lt;li className="list__item" key={index}>
+		&lt;Text
+			{item}
+		&lt;/Text&gt;
+	&lt;/li&gt;
+))}
+
+Вызов
+
+&lt;List items={[
+	'',
+	'',
+	]}
+/&gt;</code></pre>
+                </p>
+                <p>Цикл TS с разными типами данных
+                  <pre><code class="language-jsx">type MenuProps = {
+	items: {
+		linkUrl: string,
+		linkText: string,
+		active?: boolean
+	}[]
+}
+
+&lt;ul className='menu' >
+	{items.map((item, index) => (
+		&lt;li className='menu__item' key={index}>
+			&lt;a href={item.linkUrl} className={menu__link + (item.active ? menuLinkActive : '')}&gt;{item.linkText}&lt;/a&gt;
+		&lt;/li&gt;
+	))}
+&lt;/ul&gt;
+
+Вызов
+
+&lt;Menu items={[
+	{
+		linkUrl: "#",
+		linkText: "Vaults"
+	},
+	{
+		active: true,
+		linkUrl: "#",
+		linkText: "Stats"
+	}
+	]}
+/&gt;</code></pre>
+                </p>
+                <p>Цикл через children
+                  <pre><code class="language-jsx">type List = {
+	children?: React.ReactNode[],
+}
+
+export const List: React.FC<ListProps> = ({
+	children = [],
+}) => {
+	return (
+		&lt;ul className='list'&gt;
+			{children.map((child) => (
+				&lt;li className="list__item"&gt;
+					{child}
+				&lt;/li&gt;
+			))}
+		&lt;/ul&gt;
+	)
+}
+
+Вызов
+&lt;List&gt;
+	&lt;Item one /&gt;
+	&lt;Item two /&gt;
+&lt;/List&gt;
+</code></pre>
+                </p>
+                <h2 id="page-info-react-4">Работа с классами</h2>
+                <p>Передавая модификатор для класса
+                  <pre><code class="language-jsx">&lt;div className={`class ${className || ""} ${out ? 'class--out' : ''}`}&gt;&lt;/div&gt;
+
+&lt;BtnForm
+	className={`btn-form--reverse ${AddLiquidity ? 'btn-form--active' : ''}`}
+	text="ADD LIQUIDITY"
+/&gt;
+
+	если передаем AddLiquidity, то передастся btn-form--active
+
+&lt;ul className="list"&gt;
+	{items.map((item, index) => (
+		&ltli className={`list__item ${item.class || ""}`} key={index}&gt;&lt;/li&gt;
+	))}
+&lt;/ul&gt;
+
+{items.map((item, index) => (
+	&lt;li className={menu__item} key={index}&gt;
+		&lta href={item.linkUrl} className={menu__link + (item.active ? menuLinkActive : '')}&gt;{item.linkText}&lt;/a&gt;
+	&lt;/li&gt;
+))}</code></pre>
+                </p>
+                <p>Передавая модификатор(size) для класса через type.
+                  <pre><code class="language-jsx">type InterfaceProps = {
+	size?: size,
+}
+
+type size = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | 'auto';
+
+export const Interface: React.FC&lt;InterfaceProps&gt; = ({
+	size,
+}) => {
+	return (
+		&lt;div className={`interface 
+			${size ? `interface--${size}` : ''}
+		`}&gt;
+		&lt;/div&gt;
+	)
+}</code></pre>
+                </p>
+                <p>Передавая модификатор как булевое значение.
+                  <pre><code class="language-jsx">${active ? 'div--active' : ''}</code></pre>
+                </p>
+                <p>Передача модификатора для класса(css через переменную)
+                  <pre><code class="language-jsx">const Label = styled.div<{ size?: 'sm', action?: 'closed', type?: 'outline' }>`
+	${({ size }) => {
+		if (size === "sm") {
+			return `
+				padding: 2px 8px;
+				`
+		} else {
+			return `
+				padding: 5px 15px;
+			`
+		}
+}}
+
+const Healt = styled.div<{ color: 'up' | 'down' | 'middle' }>`
+	color: ${({ color, theme }) =>
+		(color === 'up' && theme.colors.primary5) ||
+		(color === 'down' && theme.colors.primary4) ||
+		(color === 'middle' && theme.colors.black)
+	};
+`	
+</code></pre>
+                </p>
+                <h2 id="page-info-react-5">Передача текста в данных</h2>
+                <p>
+                  <pre><code class="language-jsx">text = {&lt;&gt; text &lt;/&gt;}
+
+&lt;H2
+	text={&lt;&gt;Select &lt;span className="form-block__active-text"&gt;WETH/USDT &lt;/span&gt;liquidity&lt;/&gt;}
+/&gt;
+
+text: (&lt;&gt;&lt;span&gt; + 528ddddddd.8 &lt;/span&gt; SMARTCREDIT &lt;/&gt;)
+</code></pre>
+                </p>
+                <h2 id="page-info-react-6">Работа с объектами</h2>
+                <p>Передовать или нет объект
+                  <pre><code class="language-jsx">&lt;div className="class"&gt;
+	{text &&
+		&lt;span className="class"&gt;{text}&lt;/span&gt;
+	}
+&lt;/div&gt;</code></pre>
+                </p>
+                <p> При передаче one или two, предается 1 или 2
+                  <pre><code class="language-jsx">{(one || two) &&
+	&lt;div className="class"&gt;
+		{one &&
+			1
+		}
+		{two &&
+			2
+		}
+	&lt;/div&gt;
+}</code></pre>
+                </p>
+                <p>Передача любых данныъ через children
+                  <pre><code class="language-jsx">&lt;div className="class"&gt;
+	{children}
+&lt;/div&gt;
+
+&lt;Class&gt;
+	3131
+&lt;/Class&gt;</code></pre>
+                </p>
+                <p> Переопределение блока. Вызываем кнопку Button, но переопределяем ее в ItemButton. При это сохраняются стили от Button, но добавляем свой стиль.
+                  <pre><code class="language-jsx">const ItemButton = styled(Button)`
+	width: 100%;
+`
+&lt;ItemButton&gt;
+
+&lt;/ItemButton&gt;
+</code></pre>
+                </p>
+                <h2 id="page-info-react-7"> Стили через переменные</h2>
+                <p>
+                  <pre><code class="language-jsx">const styleWrap = {
+	display: 'flex',
+	flexWrap: 'wrap'
+}
+const styleDiv = {
+	paddingBottom: '10px',
+	paddingRight: '10px'
+}
+const StyleP = {
+	margin: '0'
+}
+
+&lt;div style={styleWrap}&gt;
+	&lt;div style={styleDiv}&gt;
+		&lt;p style={StyleP}&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </p>
+                <h2 id="page-info-react-8">Передача картинок</h2>
+                <p>В переменную указываем путь к картинке
+                  <pre><code class="language-jsx">import Img from "./img.jpg";
+
+&lt;img src={Img} alt="" /&gt;
+</code></pre>
+                </p>
+                <h2 id="page-info-react-">Icon svg</h2>
+                <p>В svg иконке обязательно передаем id
+                  <pre><code class="language-jsx">import React from "react";
+import './icon.scss'
+
+export type IconProps = {
+	icons?: string,
+	name?: string,
+	size?: size,
+	stroke?: stroke,
+	fill?: fill,
+}
+
+type stroke = 'none' | 'white';
+type fill = 'dark' | 'white';
+export type size = 'xs' | 's' | 'm' | 'l';
+
+export const Icon: React.FC&lt;IconProps&gt; = ({
+	icons,
+	name,
+	size = 'm',
+	stroke,
+	fill,
+}) => {
+	return (
+		&lt;svg className={`icon ${name} 
+			${size ? `icon--size-${size}` : ''}
+			${stroke ? `icon--stroke-${stroke}` : ''}
+			${fill ? `icon--fill-${fill}` : ''}
+		`}
+		&gt;
+			&lt;use xlinkHref={`${icons}#${name}`} /&gt;
+		&lt;/svg&gt;
+	)
+}
+
+Вызов
+
+import IconClose from './icon--close.svg'
+
+&lt;Icon
+	icons={IconClose}
+	name="icon--close"
+/&gt;</code></pre>
+                </p>
+                <p>Список иконок
+                  <pre><code class="language-jsx">type IconListnProps = {
+	items: {
+		icons: string,
+		name?: string,
+		fill?: fill,
+		stroke?: stroke,
+		size?: size
+	}[]
+}
+
+
+export const IconList: React.FC&lt;IconListnProps&gt; = ({
+	items = [],
+}) => {
+	return (
+		&lt;ul className="icon--list"&gt;
+			{items.map((item, index) => (
+				&lt;li className="icon--list-item" key={index}&gt;
+					&lt;Icon
+						icons={item.icons}
+						name={item.name}
+						size={item.size}
+						fill={item.fill}
+						stroke={item.stroke}
+					/&gt;
+					&lt;span className="icon--list-name"&gt;{item.name}&lt;/span&gt;
+				&lt;/li&gt;
+			))}
+		&lt;/ul&gt;
+	)
+}
+
+Вызов
+
+&lt;IconList	items={[
+	{
+		icons: IconAlertCircle,
+		name: 'icon--alert-circle'
+	},
+/&gt;</code></pre>
+                </p>
+                <p>Переводим иконки в реакт компонент
+                  <pre><code class="language-jsx">import { ReactComponent as Plus } from '../../assets/images/icon--plus.svg'
+
+&lt;Plus /&gt;
+&lt;Plus className="icon__plus" /&gt;
+</code></pre>
+                </p>
+                <h2 id="page-info-react-10">Типы данных</h2>
+                <p>
+                  <pre><code class="language-jsx">type types = {
+	str: string,
+	number: number,
+	array: [],
+	arrayNumber: number[],
+	arrayRazni: [string, number],
+	any: any, // можно присваивать разные типы данный(был 32, стало Строка)
+	object: { },
+	reactNode: React.ReactNode,
+	bolleam: boolean,
+	never: never,
+	dubleType: string | number,
+	null: null,
+	undefined: undefined,
+	function: void, // функция ничего не возвращает
+	someType: string | null | undefined,
+	someTypes?: string | null | undefined, // необязательные параметры
+	onButtonCloseClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+}</code></pre>
+                </p>
+                <p>Дочерние элементы передаются как массив данных.
+                  <pre><code class="language-jsx">{children[0]}
+{children[1]}
+</code></pre>
+                </p>
+                <h2 id="page-info-react-11">Интерфейсы</h2>
+                <p>
+                  <pre><code class="language-jsx">type Interface = {
+	tag: tag,
+	size: size,
+}
+type tag = 'H1' | 'H2' | 'H3' | 'H4' | 'p' | 'span';
+type size = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | 'auto';
+</code></pre>
+                </p>
+                <h2 id="page-info-react-12">Компонент с html атрибутами, которые можно передовать как данные</h2>
+                <p>
+                  <pre><code class="language-jsx">type ButtonProps = {
+	text?: string
+	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+export const Button: React.FC&lt;ButtonProps & React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;&gt; = ({
+	text,
+	onClick,
+	...props
+}) => (
+	&lt;button className={`btn`} onClick={onClick} {...props}&gt;
+		{text}
+	&lt;/button&gt;
+)
+</code></pre>
+                </p>
+                <h2 id="page-info-react-13">Базовый компонент - компонент из базового.</h2>
+                <p>
+                  <pre><code class="language-jsx">type BadgeBaseProps = {
+	active?: boolean,
+	size?: size,
+	children: React.ReactNode
+}
+
+export const BadgeBase: React.FC&lt;BadgeBaseProps&gt; = ({
+	active,
+	size,
+	children,
+}) => {
+
+	return (
+		&lt;Badge active={active} size={size} &gt;
+			{children}
+		&lt;/Badge&gt;
+	)
+}
+
+type BadgeOperationProps = {
+	operation?: operation,
+	children: React.ReactNode
+}
+
+export const BadgeOperation: React.FC&lt;BadgeOperationProps&gt; = ({
+	operation,
+	children,
+}) => {
+
+	return (
+		&lt;Badge size='big' operation={operation}&gt;
+			{children}
+		&lt;/Badge&gt;
+	)
+}
+export const BadgeSmRed: React.FC = props => (
+	&lt;Badge size='sm' color='red'&gt;
+		{props.children}
+	&lt;/Badge&gt;
+)
+
+type BadgeProps = {
+	children?: React.ReactNode,
+	active?: boolean,
+	size?: size,
+	operation?: operation,
+	color?: color,
+	redLight?: boolean,
+}
+
+type size = 'big' | 'sm';
+type operation = 'buy' | 'sell';
+type color = 'red';
+
+export const Badge: React.FC&lt;BadgeProps&gt; = ({
+	children,
+	active = false,
+	size,
+	operation,
+	color,
+	redLight = false,
+}) => {
+	return (
+		&lt;div className={`badge 
+			${active ? 'badge--active' : ''}
+			${size ? `badge--${size}` : ''}
+			${redLight ? 'badge--red-light' : ''}
+			${color ? `badge--${color}` : ''}
+			${operation ? `badge--${operation}` : ''}
+		`}&gt;
+			{children}
+		&lt;/div&gt;
+	)
+}
+</code></pre>
+                </p>
+                <h2 id="page-info-react-14">Передача данных.</h2>
+                <p>Передача нужных данных в родитель Card.
+                  <pre><code class="language-jsx">import React from 'react';
+import { Desktop } from './Desktop';
+import { Tablet } from './Tablet';
+import { Adaptive } from '../Adaptive/Adaptive';
+
+type CardProps = {
+	header: React.ReactNode,
+	icon: React.ReactNode,
+	btnCaption: string,
+	onBtnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
+	btnType?: "orange" | "transparent",
+	mainValue: React.ReactNode,
+	volumeHeader?: React.ReactNode,
+	volumeValue?: React.ReactNode,
+}
+
+export const Card: React.FC&lt;CardProps&gt; = props => (
+	&lt;Adaptive
+		desktop={&lt;Desktop {...props} /&gt;}
+		tablet={&lt;Tablet {...props} /&gt;}
+		mobile={&lt;Tablet {...props} /&gt;}
+	/&gt;
+)</code></pre>
+                </p>
+                <p>Передача нужных данных в родитель H3(передается только children).
+                  <pre><code class="language-jsx">export const H3: React.FC = props => (
+	&lt;Text tag='H3' fontSize='h3'&gt;
+		{props.children}
+	&lt;/Text&gt;
+)</code></pre>
+                </p>
+                <p>Передача нужных данных в родитель SliderOne(из библиотеки).
+                  <pre><code class="language-jsx">import React from 'react';
+import Slider, { SliderProps } from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import './slider-step.scss';
+
+export const SliderOne: React.FC&lt;SliderProps&gt; = props => (
+	&lt;div className="slider-one"&gt;
+		&lt;Slider {...props} /&gt;
+	&lt;/div&gt;
+)</code></pre>
+                </p>
+                <p>Цикл в цикле
+                  <pre><code class="language-jsx">export type TableProps = {
+	tBody?: {
+		itemsTd?: {}[]
+	}[],
+}
+
+export const Table: React.FC&lt;TableProps&gt; = ({
+	tBody,
+}) => {
+	return (
+		&lt;div className={`table ${typeTable || ''}`}&gt;
+			&lt;Tbody items={tBody} /&gt;
+		&lt;/div&gt;
+	)
+}
+
+type TbodyProps = {
+	items?: {
+		itemsTd?: {}[]
+	}[]
+}
+
+const Tbody: React.FC&lt;TbodyProps&gt; = ({
+	items = [],
+}) => {
+	return (
+		&lt;div className='tbody' &gt;
+			{items.map((item, index) => (
+				&lt;Trow items={item.itemsTd} key={index} /&gt;
+			))}
+		&lt;/div&gt;
+	)
+}
+
+type TrowProps = {
+	items?: {
+		title?: React.ReactNode,
+		content?: React.ReactNode,
+	}[]
+}
+
+const Trow: React.FC&lt;TrowProps&gt; = ({
+	items = [],
+}) => {
+	return (
+		&lt;div className='tbodyitem'&gt;
+			{items.map((item, index) => (
+				&lt;div className='tbodyitem__content' key={index}&gt;
+					{item.title &&
+						&lt;div className='tbodyitem__conten-title'&gt;
+							{item.title}
+						&lt;/div&gt;
+					}
+					{item.content}
+				&lt;/div&gt;
+			))}
+		&lt;/div&gt;
+	)
+}</code></pre>
+                </p>
+                <p>Передача данных через общий ключ.
+                  <pre><code class="language-jsx">export type CardProps = {
+	header: {
+		name: React.ReactNode,
+		value: React.ReactNode,
+	}
+	properties: {
+		name: React.ReactNode,
+		value: React.ReactNode,
+	}[],
+}
+
+export const Card: React.FC&lt;CardProps&gt; = ({
+	header,
+	properties = [],
+}) => {
+	return (
+		&lt;div className='card-item'&gt;
+			&lt;div className='card-item__header'&gt;
+				{header.name}
+				{header.value}
+			&lt;/div&gt;
+
+			&lt;div className='card-item__properties'&gt;
+				{properties.map((item, index) => (
+					&lt;div className='card-item__properties-item' key={index}&gt;
+						{item.name}
+						{item.value}
+					&lt;/div&gt;
+				))}
+			&lt;/div&gt;
+		&lt;/div&gt;
+	)
+}
+
+Вызов
+&lt;OfferItem header={{
+	name:
+		'Name',
+	value:
+		'value'
+	}} properties={[
+		{
+			name:
+				'name'
+			value:
+				'value',
+		}
+	]}
+/&gt;
+</code></pre>
+                </p>
+                <h2 id="page-info-react-"> </h2>
+                <p>
+                  <pre><code class="language-jsx">d</code></pre>
+                </p>
+              </div>
+            </section>
+    </div>
+    <div class="to-top"></div>
+  </body>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/jquery.modal.min.js"></script>
+  <script src="js/jquery.mask.min.js"></script>
+  <script src="js/prism.js"></script>
+  <script src="js/svg4everybody.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script>$(document).ready(function () {	svg4everybody({});});</script>
+  <script src="js/script.js"></script>
+</html>
