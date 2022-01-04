@@ -4,4 +4,4 @@
 https://github.com/AndreiVl/info_lib
 
 ## Link Demo
-https://andreivl.github.io/pervopechatnik_ver_2_one_build/
+ https://andreivl.github.io/info_lib/
