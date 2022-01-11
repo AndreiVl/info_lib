@@ -5,7 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="icon" href="images/favicon.ico">
-      <title>Миксины по pug</title>
+      <title>React</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/vs2015.min.css">
       <link href="css/jquery.modal.min.css" rel="stylesheet">
       <link href="css/prism.css" rel="stylesheet">
@@ -36,6 +36,7 @@
                       <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-12">Компонент с html атрибутами, которые можно.передовать как данные</a></li>
                       <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-13">Базовый компонент - компонент из базового.</a></li>
                       <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-14">Передача данных.</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-react-15">Добавление класса по state(tsx).</a></li>
                     </ol>
                   </div>
                 </div>
@@ -752,8 +753,28 @@ export const Card: React.FC&lt;CardProps&gt; = ({
 				'value',
 		}
 	]}
-/&gt;
-</code></pre>
+/&gt;</code></pre>
+                </p>
+                <h2 id="page-info-react-15">Добавление класса по state(tsx).</h2>
+                <p>
+                  <pre><code class="language-jsx">type ItemProps = {
+}
+
+export const Item: React.FC&lt;ItemProps&gt; = ({
+}) => {
+
+	const [active, setActive] = useState(false);
+
+	const buttonClick = (event: React.MouseEvent&lt;HTMLButtonElement&gt;) => {
+		setActive(!active)
+	}
+
+	return (
+		&lt;div&gt; className={`item ${active ? 'item--active' : ''}`}&gt;
+			&lt;Btn onClick={buttonClick} /&gt;
+		&lt;/div&gt;
+	)
+}</code></pre>
                 </p>
                 <h2 id="page-info-react-"> </h2>
                 <p>
