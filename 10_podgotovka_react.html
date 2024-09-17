@@ -1,0 +1,1377 @@
+
+<html lang="ru">
+    <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="icon" href="images/favicon.ico"/>
+      <title></title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/vs2015.min.css"/>
+      <link href="css/jquery.modal.min.css" rel="stylesheet"/>
+      <link href="css/prism.css" rel="stylesheet"/>
+      <link href="css/style.css" rel="stylesheet"/>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script><!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    </head>
+  <body>
+    <div class="wrapper">
+            <section class="page-info">
+              <div class="page-info__sidebar">
+                <div class="page-info__wrapper-menu">
+                  <div class="page-info__menu">
+                    <h2 class="page-info__title">Меню</h2>
+                    <ol class="page-info__menu-list">
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-1">Понимание жизненного цикла компонента</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-2">Работа с JSX</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-3">Понимание виртуального DOM, ререндеринг</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-4">Разделение между stateful и stateless компонентами</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-5">Разделение на классовые и функциональные компоненты</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-6">Хуки и зависимости в хуках</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-7">Принцип работы Synthetic Events, мемоизация</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-8">Понимание отличий хуков от HOC (Higher-Order Components)</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-9">Как работать с Context API</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-react-10">Декомпозиция компонентов, работа с формами (Formik, React Hook Form)</a></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <div class="page-info__body">
+                <h2 id="page-info-training-react-1">Занятие 1: Понимание жизненного цикла компонента</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <ul> 
+                      <li> 
+                        <p>Жизненный цикл компонента — это набор методов, которые вызываются на различных этапах существования компонента, начиная с его создания и заканчивая удалением из DOM. Эти методы позволяют контролировать поведение компонента на каждом этапе его жизни. Жизненный цикл компонентов используется в различных фреймворках и библиотеках, таких как React.</p>
+                      </li>
+                      <li> 
+                        <p>Для классовых компонентов жизненный цикл состоит из трех основных этапов:</p>
+                        <ul> 
+                          <li> 
+                            <p> <b>Монтирование (Mounting):</b><code class="page-info__code">constructor, static getDerivedStateFromProps, render, componentDidMount.</code></p>
+                            <ul> 
+                              <li> <code class="page-info__code">constructor(): </code>Вызывается при создании компонента. Обычно используется для инициализации состояния <code class="page-info__code">(state)</code>и привязки методов <code class="page-info__code">(bind).</code>
+                                <pre><code class="language-javascript">constructor(props) {
+  super(props);
+  this.state = { count: 0 };
+  console.log("Конструктор вызван");
+}</code></pre>
+                              </li>
+                              <li> <code class="page-info__code">static getDerivedStateFromProps()</code>: Вызывается непосредственно перед рендерингом. Используется для обновления состояния в ответ на изменения входных данных <code class="page-info__code">(props).</code></li>
+                              <li> <code class="page-info__code">render()</code>: Обязательный метод, который возвращает элементы, представляющие собой структуру компонента. Этот метод не должен изменять состояние или иметь побочные эффекты.
+                                <pre><code class="language-javascript">render() {
+  return &lt;div&gt;Счетчик: {this.state.count}&lt;/div&gt;;
+}</code></pre>
+                              </li>
+                              <li> <code class="page-info__code">componentDidMount()</code>: Вызывается сразу после монтирования компонента в DOM. Здесь можно выполнять операции, требующие наличия DOM-узлов, например, запросы данных или настройку подписок.
+                                <pre><code class="language-javascript">componentDidMount() {
+  console.log("Компонент смонтирован в DOM");
+}</code></pre>
+                              </li>
+                            </ul>
+                          </li>
+                          <li> 
+                            <p> <b>Обновление (Updating). </b>Компонент переходит в этап обновления при изменении состояния <code class="page-info__code">(state) </code>или свойств <code class="page-info__code">(props)</code>. На этом этапе происходят следующие методы жизненного цикла: <code class="page-info__code">static getDerivedStateFromProps, shouldComponentUpdate, render, getSnapshotBeforeUpdate, componentDidUpdate.</code>
+                              <ul> 
+                                <li> <code class="page-info__code">static getDerivedStateFromProps()</code>: Также вызывается на этом этапе, если изменились входные данные компонента.</li>
+                                <li> <code class="page-info__code">shouldComponentUpdate()</code>: Определяет, нужно ли компоненту повторно рендериться при изменении состояния или свойств. Этот метод позволяет оптимизировать производительность, возвращая <code class="page-info__code">false</code>, если компонент не требует повторного рендеринга.
+                                  <pre><code class="language-javascript">shouldComponentUpdate(nextProps, nextState) {
+  // Обновлять только если изменился счетчик
+  return nextState.count !== this.state.count;
+}</code></pre>
+                                </li>
+                                <li> <code class="page-info__code">render()</code>: Вызывается при каждом обновлении компонента и возвращает новую структуру компонента.</li>
+                                <li> <code class="page-info__code">getSnapshotBeforeUpdate()</code>: Вызывается сразу перед обновлением компонента в DOM. Используется для сохранения текущего состояния DOM перед его обновлением.</li>
+                                <li> <code class="page-info__code">componentDidUpdate()</code>: Вызывается сразу после обновления компонента в DOM. Можно использовать для выполнения дополнительных операций, таких как обновление данных или управление сторонними библиотеками.
+                                  <pre><code class="language-javascript">componentDidUpdate(prevProps, prevState) {
+  console.log("Компонент обновлен");
+}</code></pre>
+                                </li>
+                              </ul>
+                            </p>
+                          </li>
+                          <li> 
+                            <p> <b>Размонтирование (Unmounting).</b>Когда компонент удаляется из DOM, он переходит в этап размонтирования. На этом этапе происходит единственный метод жизненного цикла:<code class="page-info__code">componentWillUnmount</code>:  Вызывается непосредственно перед удалением компонента из DOM. Здесь можно очистить ресурсы, такие как таймеры или подписки.
+                              <pre><code class="language-javascript">componentWillUnmount() {
+  console.log("Компонент будет удален из DOM");
+}</code></pre>
+                            </p>
+                          </li>
+                        </ul>
+                      </li>
+                      <li> 
+                        <p>Функциональные компоненты не имеют методов жизненного цикла, как классовые компоненты. Вместо этого используются хуки:
+                          <ol> 
+                            <li> <code class="page-info__code">useState:</code>Для управления состоянием компонента.</li>
+                            <li> <code class="page-info__code">useEffect:</code>Для управления побочными эффектами, такими как запросы данных или подписки.</li>
+                            <li> <code class="page-info__code">useRef:</code>Для создания ссылок на DOM-элементы.</li>
+                            <li> <code class="page-info__code">useContext:</code>Для работы с контекстом.</li>
+                            <li> <code class="page-info__code">useReducer:</code>Для управления более сложным состоянием, аналогичным Redux.</li>
+                          </ol>
+                        </p>
+                        <p> <b>Этапы жизненного цикла с хуками</b></p>
+                        <ul> 
+                          <li>
+                            <p> <b>Монтирование (Mounting)</b></p>
+                            <p>При монтировании функционального компонента срабатывают хуки, такие как <code class="page-info__code">useEffect</code>с пустым массивом зависимостей, а также инициализация состояния с помощью <code class="page-info__code">useState</code>.</p>
+                            <p> <code class="page-info__code">useState: Хук </code><code class="page-info__code">useState</code>используется для инициализации и управления состоянием компонента.</p>
+                            <pre><code class="language-jsx">import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0); // Инициализация состояния
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Вы кликнули {count} раз(а)&lt;/p&gt;
+      &lt;button onClick={() = > setCount(count + 1)}&gt;Нажми на меня&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                            <p> <code class="page-info__code">useEffect ult </code>: Хук <code class="page-info__code">useEffect</code>используется для выполнения побочных эффектов, таких как запросы данных или настройка подписок. Когда передан пустой массив зависимостей <code class="page-info__code">[]</code>, эффект выполняется только после монтирования компонента (аналогично <code class="page-info__code">componentDidMount</code>в классовых компонентах).</p>
+                            <pre><code class="language-javascript">import React, { useState, useEffect } from 'react';
+
+function DataFetcher() {
+  const [data, setData] = useState([]);
+
+  useEffect(() = > {
+    // Запрос данных при монтировании
+    fetch('https://api.example.com/data')
+      .then((response) = > response.json())
+      .then((data) = > setData(data));
+
+    // Чистка при размонтировании (опционально)
+    return () = > {
+      console.log('Компонент размонтирован');
+    };
+  }, []); // Пустой массив зависимостей
+
+  return (
+    &lt;ul&gt;
+      {data.map((item) = > (
+        &lt;li key={item.id}&gt;{item.name}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+                          </li>
+                          <li>
+                            <p> <b>Обновление (Updating)</b></p>
+                            <p>Компонент переходит в этап обновления при изменении состояния <code class="page-info__code">(state)</code>или свойств <code class="page-info__code">(props)</code>. В функциональных компонентах обновление происходит при повторном вызове функции компонента.</p>
+                            <p> <code class="page-info__code">useEffect</code>с зависимостями: Вызывается при изменении зависимостей, указанных в массиве. Это позволяет управлять логикой обновления компонента.</p>
+                            <pre><code class="language-javascript">import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() = > {
+    console.log(`Вы кликнули ${count} раз(а)`); // Выполняется при каждом изменении count
+  }, [count]); // Зависимость - переменная count
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Вы кликнули {count} раз(а)&lt;/p&gt;
+      &lt;button onClick={() = > setCount(count + 1)}&gt;Нажми на меня&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                          </li>
+                          <li> 
+                            <p> <b>Размонтирование (Unmounting)</b></p>
+                            <p>При удалении компонента из DOM <code class="page-info__code">useEffect</code>с возвратом функции очистки выполняется для освобождения ресурсов.</p>
+                            <p>Очистка ресурсов в <code class="page-info__code">useEffect</code>: Возврат функции из <code class="page-info__code">useEffect</code>позволяет выполнять код очистки при размонтировании компонента (аналогично <code class="page-info__code">componentWillUnmount</code>в классовых компонентах).</p>
+                            <pre><code class="language-javascript">import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() = > {
+    const interval = setInterval(() = > {
+      setSeconds((prev) = > prev + 1);
+    }, 1000);
+
+    return () = > {
+      clearInterval(interval); // Очистка таймера при размонтировании
+      console.log('Таймер очищен');
+    };
+  }, []); // Пустой массив зависимостей - эффект запускается только при монтировании
+
+  return &lt;div&gt;Секунд прошло: {seconds}&lt;/div&gt;;
+}
+</code></pre>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li> 
+                    <p>Примеры:</p>
+                    <ul> 
+                      <li> 
+                        <p> <b>Классовый компонент с методами жизненного цикла:</b></p>
+                        <pre><code class="language-javascript">class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+    console.log('Конструктор');
+  }
+
+  componentDidMount() {
+    console.log('Компонент смонтирован');
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Компонент обновлен');
+  }
+
+  componentWillUnmount() {
+    console.log('Компонент размонтирован');
+  }
+
+  render() {
+    return &lt;div&gt;Счетчик: {this.state.count}&lt;/div&gt;;
+  }
+} </code></pre>
+                      </li>
+                      <li> 
+                        <p> <b>Получение данных при монтировании компонента:</b>Используйте <code class="page-info__code">omponentDidMount()</code>для выполнения запросов данных сразу после того, как компонент добавлен в DOM.</p>
+                        <pre><code class="language-javascript">componentDidMount() {
+  fetch('https://api.example.com/data')
+    .then(response = > response.json())
+    .then(data = > this.setState({ data }));
+}</code></pre>
+                      </li>
+                      <li> 
+                        <p> <b>Оптимизация производительности при обновлении компонента:</b>Используйте <code class="page-info__code">shouldComponentUpdate()</code>для предотвращения ненужных перерисовок.</p>
+                        <pre><code class="language-javascript">shouldComponentUpdate(nextProps, nextState) {
+  return nextProps.value !== this.props.value;
+}</code></pre>
+                      </li>
+                      <li> 
+                        <p> <b>Очистка ресурсов при удалении компонента:</b>Используйте <code class="page-info__code">componentWillUnmount()</code>для удаления подписок и очистки таймеров. </p>
+                        <pre><code class="language-javascript">componentWillUnmount() {
+  clearInterval(this.timer);
+}</code></pre>
+                      </li>
+                      <li> 
+                        <p> <b>Как использовать методы жизненного цикла для управления состоянием и поведением компонентов</b></p>
+                        <ul> 
+                          <li> 
+                            <p> <b>Инициализация состояния в конструкторе: </b>Используйте <code class="page-info__code">constructor()</code>для задания начального состояния компонента.</p>
+                            <pre><code class="language-javascript">constructor(props) {
+  super(props);
+  this.state = { isLoading: true };
+}</code></pre>
+                          </li>
+                          <li> 
+                            <p> <b>Изменение состояния на основе новых данных:</b>Используйте <code class="page-info__code">getDerivedStateFromProps()</code>для обновления состояния при изменении свойств.</p>
+                            <pre><code class="language-javascript">static getDerivedStateFromProps(nextProps, prevState) {
+  if (nextProps.someValue !== prevState.someValue) {
+    return { someValue: nextProps.someValue };
+  }
+  return null;
+}</code></pre>
+                          </li>
+                          <li> 
+                            <p> <b>Обновление данных на основе предыдущего состояния:</b>Используйте <code class="page-info__code">componentDidUpdate() </code>для выполнения действий после обновления состояния.</p>
+                            <pre><code class="language-javascript">componentDidUpdate(prevProps, prevState) {
+  if (this.state.count !== prevState.count) {
+    console.log('Счетчик обновлен:', this.state.count);
+  }
+}
+
+</code></pre>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li> 
+                    <p>Практические задачи:</p>
+                    <ul> 
+                      <li>Создайте компонент таймера: Реализуйте таймер, который начинает отсчет при монтировании и останавливается при размонтировании компонента. Используйте componentDidMount() и componentWillUnmount() для установки и очистки таймера.</li>
+                      <li>Реализуйте компонент с запросом данных: Создайте компонент, который получает данные из API при монтировании и отображает их. Используйте componentDidMount() для выполнения запроса данных.</li>
+                      <li>Оптимизируйте компонент списка: Реализуйте компонент списка, который получает данные через props. Используйте shouldComponentUpdate() для предотвращения ненужных перерисовок, если данные не изменились.</li>
+                      <li>Создайте таймер с функциональным компонентом: Реализуйте таймер, который увеличивает значение каждую секунду. Используйте useEffect для настройки и очистки таймера.</li>
+                      <li>Создайте компонент поиска: Реализуйте компонент поиска, который получает данные с API при изменении введенного текста. Используйте useEffect для выполнения запроса данных при изменении ввода.</li>
+                      <li>Используйте useCallback и useMemo для оптимизации: Создайте компонент, который принимает функции и значения в качестве свойств. Используйте useCallback и useMemo для предотвращения ненужных рендеров и вычислений.</li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-2">Занятие 2: Работа с JSX</h2>
+                <ol> 
+                  <li> 
+                    <p> <b>Теория:</b></p>
+                    <ul> 
+                      <li>JSX (JavaScript XML) — синтаксическое расширение JavaScript, которое позволяет писать HTML-подобный код внутри JavaScript.</li>
+                      <li>JSX компилируется в вызовы React.createElement(), которые создают объекты элементов React.</li>
+                      <li>JSX позволяет использовать выражения внутри фигурных скобок {} и комбинировать JavaScript и разметку.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p> <b>Примеры:</b></p>
+                    <pre> <code class="language-javascript">const element = &lt;h1&gt;Привет, мир!&lt;/h1&gt;;
+
+function Welcome(props) {
+  return &lt;h1&gt;Привет, {props.name}!&lt;/h1&gt;;
+}
+
+const app = (
+  &lt;div&gt;
+    &lt;Welcome name="Алиса" /&gt;
+    &lt;Welcome name="Боб" /&gt;
+  &lt;/div&gt;
+);
+</code></pre>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-3">Занятие 3: Понимание виртуального DOM, ререндеринг</h2>
+                <ol> 
+                  <li> 
+                    <p>Виртуальный DOM (VDOM) — это концепция, которая помогает оптимизировать процесс обновления пользовательского интерфейса в JavaScript-фреймворках и библиотеках, таких как React. Основная идея заключается в том, чтобы минимизировать количество прямых операций с реальным DOM, которые являются дорогостоящими, за счет использования его легковесной версии в памяти.</p>
+                    <p>Когда состояние или свойства компонента изменяются, создается новое дерево виртуального DOM, которое затем сравнивается с предыдущим деревом.</p>
+                    <p>Этот процесс сравнения называется диффингом (diffing), и он используется для определения минимального набора изменений, которые необходимо применить к реальному DOM</p>
+                    <p> <b>Как работает виртуальный DOM?</b></p>
+                    <p>Изменение состояния или свойств: Когда изменяется состояние или свойства компонента, React создает новое дерево виртуального DOM, представляющее обновленный интерфейс.</p>
+                    <p>Процесс сравнения (diffing): React сравнивает новое дерево виртуального DOM с предыдущей версией. Этот процесс сравнения выполняется эффективно с помощью алгоритма "Diff", который определяет разницу между двумя деревьями.</p>
+                    <p>Обновление реального DOM (reconciliation): После определения изменений (патчей) React минимально обновляет только те части реального DOM, которые изменились. Этот процесс называется reconciliation.</p>
+                  </li>
+                  <li> <b>Ререндеринг в React</b>
+                    <p>Ререндеринг — это процесс повторного вызова метода рендеринга компонента для обновления пользовательского интерфейса. Ререндеринг происходит, когда изменяются состояния или свойства компонента.</p>
+                    <p> <b>Когда происходит ререндеринг?</b></p>
+                    <ul> 
+                      <li>
+                        <p>Когда происходит ререндеринг? Изменение состояния (setState): Когда вызывается метод setState в классовом компоненте или обновляется состояние с помощью useState в функциональном компоненте.</p>
+                        <pre> <code class="language-javascript">const [count, setCount] = useState(0);
+
+// При нажатии кнопки компонент будет ререндерен
+&lt;button onClick={() = > setCount(count + 1)}&gt;Увеличить&lt;/button&gt;</code></pre>
+                      </li>
+                      <li> 
+                        <p>Изменение свойств (props): Когда родительский компонент передает новые свойства дочернему компоненту, вызывается ререндеринг дочернего компонента.</p>
+                        <pre> <code class="language-javascript">function ParentComponent() {
+  const [text, setText] = useState("Привет");
+
+  return &lt;ChildComponent message={text} /&gt;;
+}</code></pre>
+                      </li>
+                      <li> 
+                        <p>Принудительный ререндеринг: Можно вызвать метод forceUpdate() в классовом компоненте или изменить ключ компонента (key), чтобы принудительно вызвать его ререндеринг.</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li> 
+                    <p>Частые ререндеринги могут привести к снижению производительности, особенно в больших приложениях с глубокими деревьями компонентов. Вот несколько стратегий для оптимизации ререндеринга:</p><b>Что влияет на рендеры и как их уменьшить:</b>
+                    <ul> 
+                      <li>Использование метода <code class="page-info__code">shouldComponentUpdate()</code>в классовых компонентах. Переопределение метода <code class="page-info__code">shouldComponentUpdate</code>позволяет предотвратить ререндеринг, если состояние или свойства не изменились.</li>
+                      <li>Использование <code class="page-info__code">React.memo</code>для мемоизации функциональных компонентов.</li>
+                      <li>Разделение больших компонентов на меньшие.</li>
+                      <li>Оптимизация состояния: Минимизируйте количество состояний и избегайте ненужных изменений состояний.</li>
+                      <li>Хуки useMemo и <code class="page-info__code">useCallback</code>для мемоизации значений и функций.</li>
+                    </ul>
+                  </li>
+                  <li> <b>Пример оптимизации рендеров:</b>
+                    <pre> <code class="language-javascript">const MyComponent = React.memo(({ name }) = > {
+  console.log('Рендер компонента!');
+  return &lt;div&gt;Привет, {name}!&lt;/div&gt;;
+});
+
+const MemoizedComponent = React.memo(function MyComponent({ prop }) {
+  return &lt;div&gt;{prop}&lt;/div&gt;;
+});</code></pre>
+                  </li>
+                  <li> <b>Пример работы виртуального DOM</b>
+                    <pre> <code class="language-javascript">import React, { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const increment = () = > {
+    setCount(count + 1); // Обновление состояния
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Счетчик: {count}&lt;/p&gt;
+      &lt;button onClick={increment}&gt;Увеличить&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Counter;
+</code></pre>
+                    <p>Когда вы нажимаете кнопку "Увеличить", вызывается функция increment(), которая изменяет состояние count. Это вызывает ререндеринг компонента Counter, и React обновляет виртуальный DOM. Затем он сравнивает новое дерево с предыдущим виртуальным DOM, находит изменения и применяет их к реальному DOM.</p>
+                  </li>
+                  <li> 
+                    <p><b>Практические задания</b>
+                      <ul> 
+                        <li>Оптимизация ререндеринга компонента списка: Создайте компонент, который отображает список элементов и позволяет добавлять новые элементы. Используйте React.memo и useCallback для предотвращения ненужных ререндеров.</li>
+                        <li>Использование useMemo для оптимизации сложных вычислений: Создайте компонент, который выполняет сложные вычисления при изменении состояния. Используйте useMemo для оптимизации вычислений.</li>
+                        <li>Реализация ленивого рендеринга с использованием React.lazy и Suspense: Реализуйте ленивую загрузку компонентов в приложении, чтобы уменьшить начальный размер загрузки и улучшить производительность.</li>
+                      </ul>
+                    </p>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-4">Занятие 4: Разделение между stateful и stateless компонентами</h2>
+                <ol> 
+                  <li> <b>Теория:</b>
+                    <p>В React-компоненты могут быть разделены на два типа:</p>
+                    <ol> 
+                      <li> <b>Stateful компоненты</b>(состояния — компонент, управляемый состоянием)</li>
+                      <li> <b>Stateless компоненты</b>(бездействующие компоненты — компонент, не управляемый состоянием)</li>
+                    </ol>
+                    <p> <b>Каждый из этих типов компонентов имеет свою роль в архитектуре приложения и выполняет определенные функции.</b></p>
+                    <ol> 
+                      <li> <b> Stateful (Компоненты, управляемые состоянием)</b>
+                        <p>Stateful компоненты — это компоненты, которые хранят и управляют своим собственным состоянием <code class="page-info__code">(state)</code>. Они обычно используются для управления состоянием и логикой, связанной с изменениями интерфейса, и могут передавать свое состояние или данные в дочерние компоненты через <code class="page-info__code">props</code>.</p>
+                        <p> <b>Особенности stateful компонентов:</b></p>
+                        <ul> 
+                          <li>Используют хуки (такие как <code class="page-info__code">useState</code>и <code class="page-info__code">useReducer</code>в функциональных компонентах) или <code class="page-info__code">this.state</code>и <code class="page-info__code">setState</code>в классовых компонентах.</li>
+                          <li>Обладают внутренним состоянием, которое может изменяться во время жизненного цикла компонента.</li>
+                          <li>Являются "умными" компонентами, так как управляют логикой и поведением.</li>
+                        </ul>
+                      </li>
+                      <li> <b>Stateless (Компоненты, не управляемые состоянием)</b>
+                        <p>Stateless компоненты — это компоненты, которые не имеют собственного состояния. Они получают данные и функции обратного вызова через </p><code class="page-info__code">props</code>от родительских компонентов и отображают их. Stateless компоненты обычно используются для отображения информации и создания "чистых" (pure) компонентов, которые не зависят от внутреннего состояния.<b>Особенности stateless компонентов:</b>
+                        <ul> 
+                          <li>Не используют состояние <code class="page-info__code">(state)</code>и не изменяют его.</li>
+                          <li>Принимают данные через props и возвращают элементы для отображения.</li>
+                          <li>Легко тестируются, так как их вывод зависит только от входных данных <code class="page-info__code">(props)</code>.</li>
+                          <li>Являются "глупыми" компонентами, так как не содержат сложной логики.
+                            <export>default DisplayMessage;</export>
+                          </li>
+                        </ul>
+                      </li>
+                      <p>Когда использовать stateful и stateless компоненты.</p>
+                      <p>Stateful компоненты используются, когда необходимо управлять состоянием или логикой взаимодействия, например, формы, модальные окна, компоненты, которые загружают данные и управляют ими.</p>
+                      <p>Stateless компоненты используются для отображения данных, которые получают через <code class="page-info__code">props</code>, и не требуют управления состоянием. Они отлично подходят для создания компонентов UI, таких как кнопки, текстовые поля и другие элементы интерфейса.</p>
+                    </ol>
+                  </li>
+                  <li><b>Примеры</b>
+                    <p>Stateful  </p>
+                    <pre> <code class="language-javascript">import React, { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0); // Использование состояния (state)
+
+  const increment = () = > {
+    setCount(count + 1); // Изменение состояния
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Счетчик: {count}&lt;/p&gt;
+      &lt;button onClick={increment}&gt;Увеличить&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Counter;</code></pre>
+                    <p>Stateless</p>
+                    <pre> <code class="language-javascript">import React from "react";
+
+function DisplayMessage({ message }) { // Принимает данные через props
+  return &lt;p&gt;Сообщение: {message}&lt;/p&gt;; // Отображает данные
+}
+</code></pre>
+                  </li>
+                  <li> <b>Практика</b>
+                    <ul> 
+                      <li>Создайте stateful компонент для управления состоянием формы: Реализуйте форму, которая хранит введенные пользователем данные в состоянии и отображает их в реальном времени.</li>
+                      <li>Создайте stateless компонент для отображения данных: Реализуйте компонент, который принимает данные через props и отображает список элементов, например, список задач или товаров.</li>
+                      <li>Комбинирование stateful и stateless компонентов: Реализуйте приложение "Список задач" (ToDo), где родительский компонент управляет состоянием списка задач (stateful), а дочерние компоненты отображают задачи и получают данные через props (stateless).</li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-5">Занятие 5: Разделение на классовые и функциональные компоненты</h2>
+                <ol> 
+                  <li> <b>Теория</b>
+                    <p>React поддерживает два типа компонентов: классовые компоненты и функциональные компоненты. Оба типа компонентов могут использоваться для создания интерфейса пользователя, но они имеют разные подходы к управлению состоянием, жизненным циклом и написанию кода.</p>
+                    <ol> 
+                      <li> <b>Классовые компоненты</b>
+                        <p>Классовые компоненты были основным способом создания компонентов в React до появления хуков <code class="page-info__code">(hooks)</code>в версии React 16.8. Эти компоненты основаны на классах ES6 и имеют доступ к методам жизненного цикла и состоянию через <code class="page-info__code">this.state и this.setState.</code></p><b>Особенности классовых компонентов:</b>
+                        <ul> 
+                          <li>Основаны на ES6-классах.</li>
+                          <li>Управляют состоянием с помощью <code class="page-info__code">this.state</code>и обновляют его через <code class="page-info__code">this.setState.</code></li>
+                          <li>Используют методы жизненного цикла (например, <code class="page-info__code">componentDidMount, componentDidUpdate, componentWillUnmount</code>).</li>
+                          <li>Обычно имеют больше шаблонного кода и более сложны в понимании по сравнению с функциональными компонентами.</li>
+                        </ul>
+                      </li>
+                      <li> <b>Функциональные компоненты</b>
+                        <p>Функциональные компоненты — это более простой способ создания компонентов в React. До появления хуков функциональные компоненты назывались "презентационными компонентами", так как они не могли управлять состоянием и имели ограниченные возможности для работы с жизненным циклом. Однако с появлением хуков в React 16.8 функциональные компоненты могут управлять состоянием и побочными эффектами, что делает их более гибкими и предпочтительными.</p><b>Особенности функциональных компонентов:</b>
+                        <ul> 
+                          <li>Основаны на функциях JavaScript.</li>
+                          <li>Используют хуки (например, <code class="page-info__code">useState, useEffect, useContext</code>) для управления состоянием и жизненным циклом.</li>
+                          <li>Простой и чистый синтаксис.</li>
+                          <li>Меньше шаблонного кода по сравнению с классовыми компонентами.</li>
+                          <li>Легче понимать и тестировать.</li>
+                        </ul>
+                      </li>
+                    </ol>
+                    <p> <b>Когда использовать классовые и функциональные компоненты?</b></p>
+                    <p>Функциональные компоненты: Предпочтительны для большинства случаев использования, так как они более просты, эффективны и гибки с использованием хуков. Они подходят для любого типа логики, будь то управление состоянием, обработка побочных эффектов или использование контекста.</p>
+                    <p>Классовые компоненты: Все еще могут использоваться в устаревших проектах или если в приложении уже используются классовые компоненты, и нет необходимости переписывать их на функциональные. Также могут использоваться в тех случаях, когда специфические сторонние библиотеки поддерживают только классовый синтаксис.</p>
+                  </li>
+                  <li> <b>Примеры</b>
+                    <p>Пример классового компонента:</p>
+                    <pre><code class="language-javascript">import React, { Component } from "react";
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 }; // Инициализация состояния
+  }
+
+  increment = () = > {
+    this.setState((prevState) = > ({ count: prevState.count + 1 })); // Обновление состояния
+  };
+
+  componentDidMount() {
+    console.log("Компонент был смонтирован.");
+  }
+
+  componentDidUpdate() {
+    console.log("Компонент был обновлен.");
+  }
+
+  componentWillUnmount() {
+    console.log("Компонент будет удален.");
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;p&gt;Счетчик: {this.state.count}&lt;/p&gt;
+        &lt;button onClick={this.increment}&gt;Увеличить&lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default Counter;</code></pre>
+                    <p>Пример функционального компонента:</p>
+                    <pre><code class="language-javascript">import React, { useState, useEffect } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0); // Инициализация состояния
+
+  const increment = () = > {
+    setCount(count + 1); // Обновление состояния
+  };
+
+  useEffect(() = > {
+    console.log("Компонент был смонтирован.");
+
+    return () = > {
+      console.log("Компонент будет удален."); // Очистка эффекта
+    };
+  }, []); // Пустой массив означает, что эффект выполняется только при монтировании и размонтировании
+
+  useEffect(() = > {
+    console.log("Компонент был обновлен.");
+  }, [count]); // Выполняется при изменении count
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Счетчик: {count}&lt;/p&gt;
+      &lt;button onClick={increment}&gt;Увеличить&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Counter;</code></pre>
+                  </li>
+                  <li> <b>Практика</b>
+                    <ul> 
+                      <li>Создайте счетчик как классовый, так и функциональный компонент: Реализуйте простой счетчик в обоих стилях и убедитесь, что он работает одинаково.</li>
+                      <li>Перепишите классовый компонент на функциональный: Возьмите пример классового компонента, который использует состояние и методы жизненного цикла, и перепишите его на функциональный компонент с хуками.</li>
+                      <li>Создайте приложение, используя оба подхода: Создайте небольшое приложение, где часть компонентов будет классовыми, а часть — функциональными. Изучите различия в использовании и поведении.</li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-6">Занятие 6: Хуки и зависимости в хуках</h2>
+                <ol> 
+                  <li> <b>Теория:</b>
+                    <p>Хуки в React — это функции, которые позволяют вам использовать состояние и другие возможности React в функциональных компонентах. Хуки были представлены в React 16.8 и позволяют управлять состоянием, побочными эффектами, контекстом и многими другими аспектами в функциональных компонентах.</p>
+                    <p> <b>Основные хуки в React</b></p>
+                    <ol> 
+                      <li> <b>useState:</b>Позволяет добавлять состояние в функциональный компонент.</li>
+                      <li> <b>useEffect:</b>Используется для выполнения побочных эффектов, таких как вызов API, подписка на события или манипуляции с DOM.</li>
+                      <li> <b>useContext:</b>Позволяет потреблять контекст в компоненте.</li>
+                      <li> <b>useReducer:</b>Используется для управления состоянием в сложных компонентах с помощью редюсеров.</li>
+                      <li> <b>useCallback:</b>Мемоизирует функции, чтобы избежать их пересоздания при каждом ререндере.</li>
+                      <li> <b>useMemo:</b>Мемоизирует вычисления, чтобы избежать повторного выполнения сложных операций при каждом ререндере.</li>
+                      <li> <b>useRef:</b>Позволяет сохранять мутируемые значения, которые не вызывают ререндеры при их изменении.</li>
+                    </ol>
+                    <p> <b>Зависимости в хуках</b></p>
+                    <p>Зависимости в хуках, таких как <code class="page-info__code">useEffect, useCallback и useMemo</code>, определяют, когда хук должен выполняться или когда должна быть пересоздана функция или результат.</p><b>Важные моменты при работе с зависимостями</b>
+                    <p>Не оставляйте зависимости пустыми, если в эффекте используются переменные или функции: Это может привести к неправильному поведению, если эффект будет использовать старые значения переменных или функций.</p>
+                    <p>Не игнорируйте предупреждения о зависимостях: Если React предупреждает вас о том, что нужно добавить зависимости в хук, лучше прислушаться к этому предупреждению. Это поможет избежать проблем, связанных с устаревшими данными и ререндерингом.</p>
+                    <p>Правильное использование хуков useCallback и useMemo: Эти хуки следует использовать только в случаях, когда необходимо оптимизировать ререндеринг или вычисления. Их чрезмерное использование может привести к усложнению кода.</p>
+                  </li>
+                  <li> <b>Примеры:</b>
+                    <ol> 
+                      <li><b> <code class="page-info__code">useState</code></b>
+                        <p>Хук useState позволяет добавлять состояние в функциональный компонент.</p>
+                        <pre> <code class="language-javascript">import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0); // Инициализация состояния
+
+  const increment = () = > {
+    setCount(count + 1); // Обновление состояния
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Счетчик: {count}&lt;/p&gt;
+      &lt;button onClick={increment}&gt;Увеличить&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Counter;</code></pre>
+                      </li>
+                      <li><b> <code class="page-info__code">useEffect</code></b>
+                        <p>Хук useEffect используется для выполнения побочных эффектов, таких как вызовы API, настройка подписок или изменения в DOM. Он принимает два аргумента:</p>
+                        <ul> 
+                          <li>Функция эффекта: Код, который будет выполняться при ререндере.</li>
+                          <li>Массив зависимостей (необязательный): Список переменных, при изменении которых хук будет выполняться. Если массив зависимостей пустой, эффект выполнится только при монтировании и размонтировании компонента.</li>
+                        </ul>
+                        <pre> <code class="language-javascript">import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() = > {
+    console.log('Компонент был смонтирован или count изменился.');
+
+    const timer = setInterval(() = > {
+      setCount((prevCount) = > prevCount + 1);
+    }, 1000);
+
+    // Очистка эффекта
+    return () = > {
+      console.log('Компонент будет удален или count изменился.');
+      clearInterval(timer);
+    };
+  }, [count]); // Зависимость: count
+
+  return &lt;p&gt;Счетчик: {count}&lt;/p&gt;;
+}
+
+export default Timer;</code></pre>
+                      </li>
+                      <li><b>Зависимости в <code class="page-info__code">useEffect</code></b>
+                        <p>Без массива зависимостей: Эффект выполняется при каждом ререндере компонента.</p>
+                        <p>С пустым массивом зависимостей (<code class="page-info__code">[]</code>): Эффект выполняется только один раз при монтировании компонента и очищается при размонтировании.</p>
+                        <p>С массивом зависимостей (<code class="page-info__code">[dep1, dep2, ...]</code>): Эффект выполняется только при изменении одной из зависимостей.</p>
+                        <pre> <code class="language-javascript">useEffect(() = > {
+  console.log('Эффект выполняется только при изменении значения count.');
+}, [count]); // Эффект будет выполнен, только если изменится count
+</code></pre>
+                      </li>
+                      <li><b>Зависимости в<code class="page-info__code">useCallback</code></b>
+                        <p>Хук <code class="page-info__code">useCallback</code>возвращает мемоизированную версию функции, которая не будет изменяться, пока не изменится одна из зависимостей. Используется для предотвращения пересоздания функций при ререндере компонентов.</p>
+                        <pre> <code class="language-javascript">import React, { useState, useCallback } from 'react';
+
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() = > {
+    setCount((prevCount) = > prevCount + 1); // Функция будет пересоздана только при изменении count
+  }, [count]);
+
+  return (
+    &lt;div&gt;
+      &lt;ChildComponent onIncrement={increment} /&gt;
+      &lt;p&gt;Счетчик: {count}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+const ChildComponent = React.memo(({ onIncrement }) = > {
+  console.log('Ререндеринг ChildComponent');
+  return &lt;button onClick={onIncrement}&gt;Увеличить счетчик&lt;/button&gt;;
+});
+
+export default ParentComponent;    </code></pre>
+                      </li>
+                      <li><b>Зависимости в<code class="page-info__code">useMemo</code></b>
+                        <p>Хук <code class="page-info__code">useMemo</code>возвращает мемоизированное значение, которое вычисляется только тогда, когда изменяются зависимости. Используется для оптимизации вычислений.</p>
+                        <pre> <code class="language-javascript">import React, { useState, useMemo } from 'react';
+
+function ExpensiveCalculationComponent() {
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState('');
+
+  const expensiveCalculation = (num) = > {
+    console.log('Выполняется сложное вычисление...');
+    return num * 2;
+  };
+
+  const result = useMemo(() = > expensiveCalculation(count), [count]); // Выполняется только при изменении count
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Результат сложного вычисления: {result}&lt;/p&gt;
+      &lt;button onClick={() = > setCount(count + 1)}&gt;Увеличить счетчик&lt;/button&gt;
+      &lt;input value={text} onChange={(e) = > setText(e.target.value)} placeholder="Ввод текста" /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default ExpensiveCalculationComponent;              
+
+</code></pre>
+                      </li>
+                    </ol>
+                  </li>
+                  <li> <b>Практика</b>
+                    <ul>
+                      <li>Реализуйте компонент с useEffect для вызова API и вывода данных: Используйте зависимости, чтобы контролировать, когда должен происходить повторный вызов API.</li>
+                      <li>Оптимизируйте компонент с помощью useCallback и useMemo: Создайте компонент с кнопками и списком элементов. Используйте useCallback для предотвращения пересоздания функций и useMemo для оптимизации вычислений.</li>
+                      <li>Используйте хуки для управления состоянием и эффектами в сложном компоненте: Создайте компонент, который использует несколько хуков (useState, useEffect, useCallback, useMemo) для управления состоянием и выполнением побочных эффектов.</li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-7">Занятие 7: Принцип работы Synthetic Events, мемоизация</h2>
+                <ol> 
+                  <li> <b>Теория:</b>
+                    <p>Synthetic Events (синтетические события) — это кроссбраузерная оболочка для нативных событий браузера в React. React использует этот механизм для того, чтобы обеспечить единое поведение событий в различных браузерах и абстрагировать разработчиков от специфики реализации событий в конкретных браузерах. Синтетические события позволяют использовать один и тот же API для всех событий в различных браузерах, упрощая разработку и улучшая производительность.</p><b>Как работают Synthetic Events?</b>
+                    <ol> 
+                      <li>Обертка над нативными событиями: Когда вы добавляете обработчик события в компоненте React (например, <code class="page-info__code">onClick, onChange</code>), React не добавляет его непосредственно в DOM-узел. Вместо этого он использует синтетические события.</li>
+                      <li>Система делегирования событий: React добавляет единственный обработчик событий на корневом элементе (например, <code class="page-info__code">document</code>или <code class="page-info__code">root</code>элемент) и делегирует события оттуда. Когда событие происходит, React определяет, какой компонент должен реагировать на это событие, и вызывает соответствующий обработчик. Это снижает количество обработчиков в DOM и улучшает производительность.</li>
+                      <li>Реализация пула событий: React использует систему пула событий, что означает, что объекты SyntheticEvent могут быть переиспользованы для оптимизации производительности. После обработки события объект SyntheticEvent возвращается в пул для повторного использования в будущем. Это означает, что доступ к свойствам события (например, <code class="page-info__code">event.target</code>) может быть утерян после асинхронных операций.</li>
+                    </ol>
+                    <p><b>Преимущества Synthetic Events</b>
+                      <ul> 
+                        <li>Кроссбраузерная совместимость: Абстрагирует особенности браузеров и обеспечивает единое API для работы с событиями.</li>
+                        <li>Повышение производительности: За счет использования пула событий и делегирования событий.</li>
+                        <li>Упрощение разработки: Разработчики не должны беспокоиться о различиях в API событий браузера.</li>
+                      </ul>
+                    </p>
+                    <p> <b>Меморизация в React</b></p>
+                    <p>Мемоизация — это техника оптимизации производительности, которая используется для предотвращения ненужных повторных вычислений или пересоздания объектов/функций, если их входные данные (зависимости) не изменились.</p>
+                    <p>В React мемоизация часто используется с хуками <code class="page-info__code">useMemo</code>и <code class="page-info__code">useCallback</code>для оптимизации рендеринга компонентов и предотвращения создания новых функций при каждом ререндере.</p>
+                    <p>  <b>Когда использовать мемоизацию?</b></p>
+                    <ul> 
+                      <li>Дорогостоящие вычисления: Когда у вас есть вычисления, которые требуют много времени, и вы хотите их оптимизировать.</li>
+                      <li>Функции обработчиков событий: Использование <code class="page-info__code">useCallback</code>для предотвращения создания новых функций при каждом ререндере.</li>
+                      <li>Оптимизация рендеринга дочерних компонентов: Использование <code class="page-info__code">React.memo</code>и <code class="page-info__code">useCallback</code>для предотвращения повторных рендеров, когда это не нужно.</li>
+                    </ul>
+                    <p> <b>Проблемы мемоизации</b>
+                      <ul> 
+                        <li>Чрезмерная мемоизация: Использование <code class="page-info__code">useMemo</code>и <code class="page-info__code">useCallback</code>везде может сделать код сложным для понимания и поддержания. Их следует использовать только там, где это действительно необходимо.</li>
+                        <li>Зависимости: Неправильное указание зависимостей может привести к ошибкам или неправильному поведению.</li>
+                        <li>Производительность: В некоторых случаях мемоизация может потреблять больше памяти, чем она экономит на рендеринге или вычислениях.</li>
+                      </ul>
+                    </p>
+                  </li>
+                  <li> <b>Примеры
+                      <pre> <code class="language-javascript">import React from 'react';
+
+function ClickButton() {
+  const handleClick = (event) = > {
+    console.log('Тип события:', event.type); // 'click' 
+    console.log('Целевой элемент:', event.target); // Элемент button
+
+    // После асинхронного вызова свойство event будет утеряно из-за пула событий
+    setTimeout(() = > {
+      console.log('Тип события (асинхронно):', event.type); // Неопределено, так как событие было возвращено в пул
+    }, 0);
+  };
+
+  return &lt;button onClick={handleClick}&gt;Нажми на меня&lt;/button&gt;;
+}
+
+export default ClickButton;          </code></pre></b>
+                    <p>Чтобы избежать утраты доступа к свойствам события при асинхронных операциях, вы можете использовать event.persist():</p>
+                    <pre> <code class="language-javascript">const handleClick = (event) = > {
+  event.persist(); // Событие не будет возвращено в пул
+  setTimeout(() = > {
+    console.log('Тип события (асинхронно):', event.type); // 'click' 
+  }, 0);
+};
+</code></pre>
+                    <p> <code class="page-info__code">useMemo</code>используется для мемоизации значений или результатов вычислений. Он возвращает мемоизированное значение, которое пересчитывается только тогда, когда изменяются зависимости.</p>
+                    <pre> <code class="language-javascript">import React, { useState, useMemo } from 'react';
+
+function ExpensiveComponent({ items }) {
+  // Мемоизация дорогостоящих вычислений
+  const sortedItems = useMemo(() = > {
+    console.log('Выполнение дорогостоящих вычислений...');
+    return items.sort();
+  }, [items]); // Зависимость: items
+
+  return (
+    &lt;div&gt;
+      {sortedItems.map((item, index) = > (
+        &lt;div key={index}&gt;{item}&lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+export default ExpensiveComponent;</code></pre>
+                    <p>В этом примере, <code class="page-info__code">sortedItems</code>будет пересчитан только тогда, когда изменится массив <code class="page-info__code">items</code>, что предотвращает ненужные повторные вычисления.</p>
+                    <p> <code class="page-info__code">useCallback</code>используется для мемоизации функций. Он возвращает мемоизированную версию функции, которая пересоздается только тогда, когда изменяются зависимости.</p>
+                    <pre> <code class="language-javascript">import React, { useState, useCallback } from 'react';
+
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+
+  // Мемоизация функции, чтобы предотвратить ее пересоздание при каждом ререндере
+  const increment = useCallback(() = > {
+    setCount((prevCount) = > prevCount + 1);
+  }, []); // Зависимости: []
+
+  return (
+    &lt;div&gt;
+      &lt;ChildComponent onIncrement={increment} /&gt;
+      &lt;p&gt;Счетчик: {count}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+const ChildComponent = React.memo(({ onIncrement }) = > {
+  console.log('Ререндеринг ChildComponent');
+  return &lt;button onClick={onIncrement}&gt;Увеличить счетчик&lt;/button&gt;;
+});
+
+export default ParentComponent;</code></pre>
+                    <p>В этом примере, <code class="page-info__code">onIncrement</code>не будет пересоздаваться при каждом ререндере <code class="page-info__code">ParentComponent</code>, если зависимости не изменились. Это полезно для предотвращения лишних рендеров дочерних компонентов.</p>
+                  </li>
+                  <li> <b>Практика</b>
+                    <ul> 
+                      <li>Создайте компонент с использованием Synthetic Events: Реализуйте компонент с обработчиками событий onClick, onChange и продемонстрируйте использование event.persist().</li>
+                      <li>Оптимизируйте компонент с использованием useMemo и useCallback: Создайте компонент, который выполняет дорогостоящие вычисления, и используйте useMemo для мемоизации результатов и useCallback для мемоизации функций.</li>
+                      <li>Преобразуйте приложение с учетом мемоизации: Возьмите существующее приложение и определите, где можно использовать useMemo, useCallback, и React.memo для оптимизации рендеринга и улучшения производительности.</li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-8">Занятие : Понимание отличий хуков от HOC (Higher-Order Components)</h2>
+                <ol> 
+                  <li> <b>Теория:</b>
+                    <p>В React существует несколько способов для повторного использования логики между компонентами. До появления хуков (Hooks) основным способом было использование компонентов высшего порядка (Higher-Order Components, HOC) и рендер-пропсов (Render Props). Хуки, представленные в React 16.8, изменили подход к управлению состоянием и выполнению побочных эффектов, а также предоставили новый способ для повторного использования логики. Давайте рассмотрим основные отличия между хуками и HOC.</p>
+                    <p><b>Что такое HOC (Higher-Order Components)?</b></p>
+                    <p>Компонент высшего порядка (Higher-Order Component, HOC) — это функция, которая принимает компонент и возвращает новый компонент. HOC позволяют добавлять дополнительную функциональность к существующим компонентам без их изменения. Они часто используются для управления состоянием, обработкой данных, авторизацией и многими другими задачами.</p>
+                    <p><b>Что такое хуки (Hooks)?</b></p>
+                    <p>Хуки — это функции, которые позволяют "подключаться" к состоянию и жизненному циклу компонентов из функциональных компонентов. С помощью хуков можно добавлять функционал к компонентам без необходимости создавать классовые компоненты или использовать HOC.</p>
+                    <p>Некоторые часто используемые хуки:
+                      <ul> 
+                        <li>useState: позволяет добавлять состояние в функциональный компонент.</li>
+                        <li>useEffect: используется для выполнения побочных эффектов.</li>
+                        <li>useContext: позволяет потреблять контекст в компоненте.</li>
+                        <li>useMemo и useCallback: используются для оптимизации производительности.</li>
+                        <li>useRef: предоставляет доступ к DOM-элементам или сохранение мутируемых значений.</li>
+                      </ul>
+                    </p>
+                    <p> <b>Отличия между хуками и HOC</b></p>
+                    <ol> 
+                      <li><b>Простота использования и читабельность:</b>
+                        <ul> 
+                          <li>Хуки: Упрощают и делают код более понятным, устраняя необходимость в дополнительных уровнях вложенности, характерных для HOC. Состояние и побочные эффекты можно управлять непосредственно в функциональных компонентах, что делает их легче для понимания и тестирования.</li>
+                          <li>HOC: Могут добавлять уровни вложенности, что усложняет чтение и отладку кода. Компоненты высшего порядка могут вызывать проблемы с именами (conflicts) и трудно отслеживать порядок их вызовов.</li>
+                        </ul>
+                      </li>
+                      <li><b>Повторное использование логики:</b>
+                        <ul> 
+                          <li>Хуки: Предоставляют способ повторного использования логики без изменения структуры компонентов. Хуки позволяют легко разделять логику на небольшие функции, которые могут быть использованы повторно в разных компонентах.</li>
+                          <li>HOC: Позволяют повторно использовать логику путем создания новых компонентов. Однако это может привести к избыточной вложенности компонентов.</li>
+                        </ul>
+                      </li>
+                      <li><b>Проблемы производительности:</b>
+                        <ul> 
+                          <li>Хуки: Могут приводить к нежелательным побочным эффектам или проблемам с производительностью, если они неправильно используются (например, неправильное управление зависимостями в <code class="page-info__code">useEffect</code>).</li>
+                          <li>HOC: Могут создавать проблемы производительности из-за ненужных повторных рендеров и вызовов <code class="page-info__code">render</code>функции, если они не оптимизированы должным образом.</li>
+                        </ul>
+                      </li>
+                      <li><b>Композируемость и модульность:</b>
+                        <ul> 
+                          <li>Хуки: Легко компонуются и могут быть использованы в сочетании друг с другом. Различные хуки могут быть импортированы и использованы в одном и том же компоненте без какого-либо дополнительного кода.</li>
+                          <li>HOC: Создание компонуемых HOC может быть сложным. Если несколько HOC применяются к одному и тому же компоненту, это может привести к "оберточному аду" (wrapper hell).</li>
+                        </ul>
+                      </li>
+                      <li><b>Типизация с TypeScript:</b>
+                        <ul> 
+                          <li>Хуки: Проще типизировать с помощью TypeScript, так как они возвращают значения и функции, а не компоненты.</li>
+                          <li>HOC: Типизация HOC в TypeScript может быть сложной, так как требуется правильно передать типы пропсов через цепочку HOC.</li>
+                        </ul>
+                      </li>
+                      <li><b>Обработка состояния и жизненного цикла:</b>
+                        <ul> 
+                          <li>Хуки: Предоставляют функции, такие как useState и useEffect, для управления состоянием и эффектами прямо внутри функциональных компонентов. Это позволяет избежать использования классовых компонентов.</li>
+                          <li>HOC: Обычно используются для добавления состояния и жизненного цикла к компонентам, которые могут не поддерживать их изначально.</li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </li>
+                  <li> <b>Примеры:</b>
+                    <p>Пример HOC:</p>
+                    <pre> <code class="language-javascript"> import React from 'react';
+
+// HOC для добавления логики авторизации
+function withAuthorization(Component) {
+  return function AuthenticatedComponent(props) {
+    const isAuthenticated = true; // Проверка авторизации
+
+    if (!isAuthenticated) {
+      return &lt;div&gt;Пожалуйста, войдите в систему&lt;/div&gt;;
+    }
+
+    // Передача всех пропсов в оборачиваемый компонент
+    return &lt;Component {...props} /&gt;;
+  };
+}
+
+// Компонент, к которому будет применен HOC
+function Dashboard(props) {
+  return &lt;div&gt;Добро пожаловать на панель управления!&lt;/div&gt;;
+}
+
+// Применение HOC к компоненту
+export default withAuthorization(Dashboard);
+
+const withLogging = (Component) = > {
+  return (props) = > {
+    console.log('Компонент рендерится');
+    return &lt;Component {...props} /&gt;;
+  };
+};
+
+const SimpleComponent = () = > &lt;div&gt;Простой компонент&lt;/div&gt;;
+const EnhancedComponent = withLogging(SimpleComponent);
+
+</code></pre>
+                  </li>
+                  <p>В этом примере <code class="page-info__code">withAuthorization</code>— это HOC, который добавляет логику проверки авторизации к любому компоненту.</p>
+                  <p>Пример использования хуков:</p>
+                  <pre> <code class="language-javascript"> import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0); // Хук для состояния
+
+  useEffect(() = > {
+    document.title = `Вы нажали ${count} раз`; // Хук для побочного эффекта
+  }, [count]); // Зависимость
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Вы нажали {count} раз&lt;/p&gt;
+      &lt;button onClick={() = > setCount(count + 1)}&gt;Нажми меня&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Counter;</code></pre>
+                  <p>Примеры использования HOC и хуков в одном проекте</p>
+                  <p>Иногда HOC и хуки могут использоваться вместе для достижения определенных целей. Например, можно использовать HOC для проверки прав доступа пользователя и хуки для управления состоянием компонента.</p>
+                  <pre> <code class="language-javascript"> import React, { useState } from 'react';
+
+// HOC для авторизации
+function withAuthorization(Component) {
+  return function AuthenticatedComponent(props) {
+    const isAuthenticated = true; // Проверка авторизации
+
+    if (!isAuthenticated) {
+      return &lt;div&gt;Пожалуйста, войдите в систему&lt;/div&gt;;
+    }
+
+    return &lt;Component {...props} /&gt;;
+  };
+}
+
+function Profile() {
+  const [name, setName] = useState('John Doe'); // Хук для состояния
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Профиль пользователя&lt;/h1&gt;
+      &lt;p&gt;Имя: {name}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default withAuthorization(Profile);</code></pre>
+                  <li> <b>Заключение:</b>
+                    <p>Хуки предоставляют более современный и удобный способ управления состоянием и повторного использования логики в функциональных компонентах, делая код более понятным и упрощая композицию.</p>
+                    <p>HOC все еще полезны в определенных случаях, например, для оборачивания компонентов с дополнительной функциональностью, такой как проверка прав доступа. Однако в современных приложениях с использованием хуков HOC встречаются реже.</p>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-9">Занятие 9: Как работать с Context API</h2>
+                <ol> 
+                  <li> <b>Теория:</b>
+                    <p>Context API — это встроенный инструмент React, который позволяет передавать данные через дерево компонентов без необходимости явно передавать пропсы на каждом уровне. Context API идеально подходит для управления состоянием, которое требуется нескольким компонентам, особенно в больших приложениях, где передача пропсов может стать громоздкой и трудной для управления.</p>
+                    <p> <b>Когда использовать Context API?</b></p>
+                    <p>Context API полезен, когда необходимо управлять глобальным состоянием приложения, таким как:</p>
+                    <ul> 
+                      <li>Темы (темный/светлый режим)</li>
+                      <li>Языковые настройки (локализация)</li>
+                      <li>Пользовательские данные (авторизация, настройки)</li>
+                      <li>Настройки и предпочтения приложения</li>
+                    </ul>
+                    <p>Однако важно помнить, что Context не следует использовать для управления всеми данными в приложении, так как это может привести к проблемам с производительностью из-за частых перерисовок. В таких случаях рекомендуется использовать библиотеки для управления состоянием, такие как Redux, Zustand и т.д.</p>
+                    <p><b>Основные концепции Context API</b></p>
+                    <ul> 
+                      <li>React.createContext(): Создает объект контекста. Принимает начальное значение контекста.</li>
+                      <li>Provider: Компонент, который позволяет дочерним компонентам подписываться на изменения контекста.</li>
+                      <li>Consumer: Компонент, который использует функцию для чтения значения из контекста.</li>
+                      <li>useContext(): Хук, который позволяет функциональным компонентам потреблять контекст.</li>
+                    </ul>
+                    <p> <b>Шаги для использования Context API</b></p>
+                    <ol> 
+                      <li>Создание контекста.</li>
+                      <li>Создание провайдера контекста.</li>
+                      <li>Использование контекста в компонентах-потребителях.</li>
+                    </ol>
+                    <p><b>Преимущества использования Context API</b></p>
+                    <ul> 
+                      <li>Простота и удобство использования: Прост в понимании и реализации, не требует дополнительных библиотек.</li>
+                      <li>Избавление от "prop drilling": Позволяет передавать данные глубоко в дерево компонентов без необходимости пропс-дриллинга.</li>
+                      <li>Отлично подходит для управления глобальными состояниями: Контекст идеален для данных, которые должны быть доступны в нескольких частях приложения, таких как темы или авторизация.</li>
+                    </ul>
+                    <p> <b>Недостатки использования Context API</b></p>
+                    <ul> 
+                      <li>Проблемы с производительностью: Контекст может вызвать перерисовку всех потребляющих компонентов при изменении значения, что может негативно сказаться на производительности.</li>
+                      <li>Не предназначен для частого изменения данных: Контекст лучше всего подходит для данных, которые не изменяются часто (например, настройки темы или текущий пользователь).</li>
+                      <li>Может быть сложно дебажить: Особенно в больших приложениях с глубоким деревом компонентов.</li>
+                    </ul>
+                  </li>
+                  <li> <b>Примеры:</b>
+                    <p>Давайте рассмотрим пример приложения, в котором используется Context API для управления темой (светлая или темная).</p>
+                    <p> <b>Создание контекста</b></p>
+                    <p>Создаем файл <code class="page-info__code">ThemeContext.js</code>и определяем контекст:</p>
+                    <pre> <code class="language-javascript"> import React, { createContext, useState } from 'react';
+
+// Создаем контекст
+const ThemeContext = createContext();
+
+// Создаем провайдер для управления состоянием темы
+export const ThemeProvider = ({ children }) = > {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () = > {
+    setTheme((prevTheme) = > (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, toggleTheme }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+};
+
+export default ThemeContext;
+</code></pre>
+                    <p> <code class="page-info__code">ThemeContext</code>: Контекст, который мы создали с помощью <code class="page-info__code">createContext()</code>.</p>
+                    <p> <code class="page-info__code">ThemeProvider</code>: Компонент-провайдер, который управляет состоянием темы и предоставляет его всем дочерним компонентам.</p>
+                    <p> <b>Использование провайдера в компоненте верхнего уровня</b></p>
+                    <p>Теперь мы оборачиваем наше приложение в компонент-провайдер, чтобы контекст был доступен всем дочерним компонентам:</p>
+                    <pre> <code class="language-javascript">import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { ThemeProvider } from './ThemeContext'; // Импортируем провайдер
+
+ReactDOM.render(
+  &lt;React.StrictMode&gt;
+    &lt;ThemeProvider&gt;
+      &lt;App /&gt;
+    &lt;/ThemeProvider&gt;
+  &lt;/React.StrictMode&gt;,
+  document.getElementById('root')
+);</code></pre>
+                    <p>В этом примере <code class="page-info__code">ThemeProvider</code>оборачивает весь компонент <code class="page-info__code"> App</code>, что делает контекст доступным для всех дочерних компонентов <code class="page-info__code">App</code>.</p>
+                    <p> <b> Потребление контекста в компонентах</b></p>
+                    <p>Теперь мы можем использовать контекст в любом дочернем компоненте с помощью хука <code class="page-info__code">useContext()</code>.</p>
+                    <pre> <code class="language-javascript">import React, { useContext } from 'react';
+import ThemeContext from './ThemeContext'; // Импортируем созданный контекст
+
+const ThemeSwitcher = () = > {
+  const { theme, toggleTheme } = useContext(ThemeContext); // Используем хук useContext для получения данных из контекста
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Текущая тема: {theme}&lt;/p&gt;
+      &lt;button onClick={toggleTheme}&gt;Переключить тему&lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default ThemeSwitcher;</code></pre>
+                    <p>В этом примере компонент <code class="page-info__code">ThemeSwitcher</code>получает значение <code class="page-info__code">theme</code>и функцию <code class="page-info__code">toggleTheme</code>из контекста и использует их для отображения текущей темы и ее переключения.</p>
+                    <p> <b>Использование контекста в нескольких компонентах</b></p>
+                    <p>Вы можете использовать контекст в любом количестве компонентов на любом уровне вложенности. Например:</p>
+                    <pre> <code class="language-javascript">import React from 'react';
+import ThemeSwitcher from './ThemeSwitcher';
+import AnotherComponent from './AnotherComponent';
+
+const App = () = > {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Контекстное управление темой&lt;/h1&gt;
+      &lt;ThemeSwitcher /&gt;
+      &lt;AnotherComponent /&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default App;</code></pre>
+                    <pre> <code class="language-javascript">import React, { useContext } from 'react';
+import ThemeContext from './ThemeContext';
+
+const AnotherComponent = () = > {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Тема в другом компоненте: {theme}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default AnotherComponent;</code></pre>
+                    <p> <b>Оптимизация производительности Context API</b></p>
+                    <p>Чтобы избежать ненужных ререндеров, можно использовать следующие техники:</p>
+                    <pre> <code class="language-javascript">import React, { createContext, useState, useMemo } from 'react';
+
+const ThemeContext = createContext();
+
+export const ThemeProvider = ({ children }) = > {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () = > {
+    setTheme((prevTheme) = > (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  // Мемоизируем значение контекста, чтобы избежать лишних ререндеров
+  const contextValue = useMemo(() = > ({ theme, toggleTheme }), [theme]);
+
+  return (
+    &lt;ThemeContext.Provider value={contextValue}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+};</code></pre>
+                    <p>Использование React.memo для оптимизации дочерних компонентов: Мемоизация компонентов, которые потребляют контекст, чтобы они не ререндерились, если их пропсы не изменились.</p>
+                  </li>
+                  <li> <b>Заключение</b>
+                    <p>Context API — мощный инструмент для управления глобальным состоянием в React, который упрощает передачу данных через дерево компонентов. Он отлично подходит для случаев, когда необходимо избегать "prop drilling" и предоставлять глобальное состояние для множества компонентов. Однако важно использовать его с осторожностью, чтобы избежать проблем с производительностью и сложностью отладки.</p>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-react-10">Занятие 10: Декомпозиция компонентов, работа с формами (Formik, React Hook Form)</h2>
+                <ol> 
+                  <li> <b>Теория:</b>
+                    <p>Декомпозиция компонентов — это процесс разделения больших компонентов на более мелкие, управляемые и переиспользуемые части. Этот подход улучшает читабельность кода, упрощает его поддержку и тестирование, а также способствует повторному использованию компонентов.</p>
+                    <p> <b>Принципы декомпозиции</b></p>
+                    <ol> 
+                      <li>Одна ответственность: Каждый компонент должен выполнять одну задачу или отвечать за одну часть пользовательского интерфейса. Это делает его легче для понимания и тестирования.</li>
+                      <li>Повторное использование: Создавайте компоненты так, чтобы они могли быть переиспользованы в разных частях приложения. Это уменьшает дублирование кода и упрощает его поддержку.</li>
+                      <li>Составные компоненты: Используйте составные компоненты для построения более сложных компонентов из более простых. Например, можно создать компонент кнопки и затем использовать его в различных местах приложения.</li>
+                      <li>Четкое API: Компоненты должны иметь четкое и понятное API, чтобы другие разработчики могли легко их использовать.</li>
+                    </ol>
+                    <p> <b>Работа с формами в React</b></p>
+                    <p>В React есть несколько популярных библиотек для работы с формами, которые упрощают управление состоянием формы, валидацией и обработкой отправки. Рассмотрим две популярных библиотеки: Formik и React Hook Form.</p>
+                    <p> <b>Formik</b>— это библиотека для управления формами в React, которая упрощает обработку состояния формы, валидацию и обработку отправки.</p>
+                    <p>Особенности:</p>
+                    <ul> 
+                      <li>Легко управлять состоянием формы и валидацией.</li>
+                      <li>Поддерживает синхронную и асинхронную валидацию.</li>
+                      <li>Предоставляет простые способы для управления ошибками и состоянием отправки.</li>
+                    </ul>
+                    <p> <b>React Hook Form</b>— это библиотека, которая позволяет управлять формами в React с минимальным количеством рендеров и простой API.</p>
+                    <p> <b>Особенности:</b></p>
+                    <ul> 
+                      <li>Меньше рендеров и более высокая производительность благодаря использованию внутреннего состояния формы.</li>
+                      <li>Простой и удобный API.</li>
+                      <li>Легко интегрируется с UI библиотеками.</li>
+                    </ul>
+                  </li>
+                  <li> <b>Примеры:</b>
+                    <p>Рассмотрим пример простого приложения с формой и списком задач. Начнем с большого компонента и постепенно декомпозируем его.</p>
+                    <pre> <code class="language-javascript">import React, { useState } from 'react';
+
+function App() {
+  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState('');
+
+  const handleSubmit = (event) = > {
+    event.preventDefault();
+    setTasks([...tasks, task]);
+    setTask('');
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Todo List&lt;/h1&gt;
+      &lt;form onSubmit={handleSubmit}&gt;
+        &lt;input
+          type="text"
+          value={task}
+          onChange={(e) = > setTask(e.target.value)}
+        /&gt;
+        &lt;button type="submit"&gt;Add Task&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;ul&gt;
+        {tasks.map((task, index) = > (
+          &lt;li key={index}&gt;{task}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+                    <p>Декомпозированный вариант:</p>
+                    <p>1 Компонент формы:</p>
+                    <pre> <code class="language-javascript">import React from 'react';
+
+function TaskForm({ task, onTaskChange, onSubmit }) {
+  return (
+    &lt;form onSubmit={onSubmit}&gt;
+      &lt;input
+        type="text"
+        value={task}
+        onChange={(e) = > onTaskChange(e.target.value)}
+      /&gt;
+      &lt;button type="submit"&gt;Add Task&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+
+export default TaskForm;</code></pre>
+                    <p>2 Компонент списка задач:</p>
+                    <pre> <code class="language-javascript">import React from 'react';
+
+function TaskList({ tasks }) {
+  return (
+    &lt;ul&gt;
+      {tasks.map((task, index) = > (
+        &lt;li key={index}&gt;{task}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+
+export default TaskList;    </code></pre>
+                    <p>3 Основной компонент приложения:    </p>
+                    <pre> <code class="language-javascript">import React, { useState } from 'react';
+import TaskForm from './TaskForm';
+import TaskList from './TaskList';
+
+function App() {
+  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState('');
+
+  const handleSubmit = (event) = > {
+    event.preventDefault();
+    setTasks([...tasks, task]);
+    setTask('');
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Todo List&lt;/h1&gt;
+      &lt;TaskForm
+        task={task}
+        onTaskChange={setTask}
+        onSubmit={handleSubmit}
+      /&gt;
+      &lt;TaskList tasks={tasks} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+                    <p> <b>Пример использования Formik:</b></p>
+                    <pre> <code class="language-javascript">import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object({
+  email: Yup.string().email('Invalid email address').required('Required'),
+  password: Yup.string().min(6, 'Must be at least 6 characters').required('Required'),
+});
+
+const MyForm = () = > (
+  &lt;Formik
+    initialValues={{ email: '', password: '' }}
+    validationSchema={validationSchema}
+    onSubmit={(values) = > {
+      console.log('Form values:', values);
+    }}
+  &gt;
+    &lt;Form&gt;
+      &lt;div&gt;
+        &lt;label htmlFor="email"&gt;Email&lt;/label&gt;
+        &lt;Field type="email" id="email" name="email" /&gt;
+        &lt;ErrorMessage name="email" component="div" /&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label htmlFor="password"&gt;Password&lt;/label&gt;
+        &lt;Field type="password" id="password" name="password" /&gt;
+        &lt;ErrorMessage name="password" component="div" /&gt;
+      &lt;/div&gt;
+      &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/Form&gt;
+  &lt;/Formik&gt;
+);
+
+export default MyForm;</code></pre>
+                    <p> <b>Пример использования React Hook Form:</b></p>
+                    <pre> <code class="language-javascript">import React from 'react';
+import { useForm } from 'react-hook-form';
+
+const MyForm = () = > {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (data) = > {
+    console.log('Form data:', data);
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit(onSubmit)}&gt;
+      &lt;div&gt;
+        &lt;label htmlFor="email"&gt;Email&lt;/label&gt;
+        &lt;input
+          type="email"
+          id="email"
+          {...register('email', { required: 'Email is required' })}
+        /&gt;
+        {errors.email && &lt;p&gt;{errors.email.message}&lt;/p&gt;}
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label htmlFor="password"&gt;Password&lt;/label&gt;
+        &lt;input
+          type="password"
+          id="password"
+          {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters long' } })}
+        /&gt;
+        {errors.password && &lt;p&gt;{errors.password.message}&lt;/p&gt;}
+      &lt;/div&gt;
+      &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+  );
+};
+
+export default MyForm;</code></pre>
+                  </li>
+                  <li> <b>Заключение:</b>
+                    <p>Декомпозиция компонентов улучшает структуру приложения, делая код более понятным и легким в поддержке. Хорошая практика — разделять большие компоненты на более мелкие и управляемые части.</p>
+                    <p>Formik и React Hook Form — это популярные библиотеки для управления формами в React. Formik предоставляет более структурированный подход с встроенной валидацией, в то время как React Hook Form ориентирован на производительность и предоставляет более легкий API для работы с формами. Выбор между ними зависит от требований вашего проекта и предпочтений команды разработчиков.</p>
+                  </li>
+                </ol>
+              </div>
+            </section>
+    </div>
+    <div class="to-top"></div>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.modal.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+    <script src="js/prism.js"></script>
+    <script src="js/svg4everybody.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>$(document).ready(function () {	svg4everybody({});});</script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

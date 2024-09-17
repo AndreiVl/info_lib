@@ -35,6 +35,7 @@
                       <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-mixin-11">Миксин с условиями</a></li>
                       <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-mixin-12">Миксин социальных кнопок</a></li>
                       <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-mixin-13">Миксин меню</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-mixin-14">Правильный вызов цикла массива</a></li>
                     </ol>
                   </div>
                 </div>
@@ -43,13 +44,13 @@
                 <h2 id="page-info-mixin-1">Стартовый миксин</h2>
                 <p>
                   <pre><code class="language-pug">mixin start(date)
-	div.start(class!=attributes.class)!=data.start</code></pre>
+  div.start(class!=attributes.class)!=data.start</code></pre>
                 </p>
                 <h2 id="page-info-mixin-2">Миксин и модификтор через мкисин основного блока </h2>
                 <p>
                   <pre><code class="language-pug">mixin start()
 mixin startBorder()
-	+start()(class="title--border")
+  +start()(class="title--border")
 </code></pre>
                 </p>
                 <h2 id="page-info-mixin-3">Можно передовать любой отребут при вызове во второх скобках</h2>
@@ -65,138 +66,138 @@ img(src="images/"+data.img+"-400.jpg" srcset="images/"+data.img+"-400@2x.jpg 2x"
                 <h2 id="page-info-mixin-5">Передаем данные из миксина в миксин. Так же беграуд блока</h2>
                 <p>
                   <pre> <code class="language-pug">mixin startBig(data)
-	div.services-big(class!=attributes.class style="background-image: url(../images/"+data.imgeBg+".jpg);")
-		div.services-big__bg
-			div.services-big__text
-				include ../services/services.pug
-				+startItem({icon: data.icon, title: data.title , text: data.text})
+  div.services-big(class!=attributes.class style="background-image: url(../images/"+data.imgeBg+".jpg);")
+    div.services-big__bg
+      div.services-big__text
+        include ../services/services.pug
+        +startItem({icon: data.icon, title: data.title , text: data.text})
 
 +startBig({
-	imgeBg: '',
-	icon: '',
-	title: '',
-	text: ''
+  imgeBg: '',
+  icon: '',
+  title: '',
+  text: ''
 })
 </code></pre>
                 </p>
                 <h2 id="page-info-mixin-6">Цикл на меню с лишками</h2>
                 <p>
                   <pre> <code class="language-pug">mixin startList(classname,...items)
-	ul(class=""+classname)
-		each item in items
-		li(class="social-link social-link__" +item)= item
+  ul(class=""+classname)
+    each item in items
+    li(class="social-link social-link__" +item)= item
 
-	+startList(1,2,3,4,5,6)
+  +startList(1,2,3,4,5,6)
 </code></pre>
                 </p>
                 <h2 id="page-info-mixin-7">Меню с циклом. Передаем в пункт меню любой миксин</h2>
                 <p>
                   <pre> <code class="language-pug">mixin startReviews(data)
-	div.reviews-list(class!=attributes.class)
-		div.container
-			div.row.justify-content-center
-				- for (var i = 0; i < data.length; i++)
-					div.reviews-list__item.col-12.col-md-3
-						&#43;&#35;{data[i].name}(data[i].arg)
+  div.reviews-list(class!=attributes.class)
+    div.container
+      div.row.justify-content-center
+        - for (var i = 0; i < data.length; i++)
+          div.reviews-list__item.col-12.col-md-3
+            &#43;&#35;{data[i].name}(data[i].arg)
 
 +startReviews([
-	{
-		name: 'startBig',
-		arg: {
-			imgeBg: ''
-		}
-	}
+  {
+    name: 'startBig',
+    arg: {
+      imgeBg: ''
+    }
+  }
 ])
 </code></pre>
                 </p>
                 <h2 id="page-info-mixin-8">Миксин с вызовом миксинов в конкретных блоках.</h2>
                 <p>
                   <pre> <code class="language-pug">mixin start(data)
-	div.compound
-		div.compound__left
-			&#43;&#35;{data.left.name}(data.left.arg)
+  div.compound
+    div.compound__left
+      &#43;&#35;{data.left.name}(data.left.arg)
 
-		div.compound__right
-			&#43;&#35;{data.right.name}(data.right.arg)
+    div.compound__right
+      &#43;&#35;{data.right.name}(data.right.arg)
 
-			&#43;&#35;{data.bottom.name}(data.bottom.arg)(class=data.bottom_class)
+      &#43;&#35;{data.bottom.name}(data.bottom.arg)(class=data.bottom_class)
 
 +start({
-	left: {
-		name: '',
-		arg: {
+  left: {
+    name: '',
+    arg: {
 
-		}
-	},
-	right: {
-		name: '',
-		arg: {
+    }
+  },
+  right: {
+    name: '',
+    arg: {
 
-		}
-	},
-	bottom: {
-		name: '',
-		arg: {
+    }
+  },
+  bottom: {
+    name: '',
+    arg: {
 
-		}
-	}
-	bottom_class: ''
+    }
+  }
+  bottom_class: ''
 })</code></pre>
                 </p>
                 <h2 id="page-info-mixin-9">Цикл с вызовом в элементе любой миксин</h2>
                 <p>
                   <pre> <code class="language-pug">mixin start(data)
-	div.row(class!=attributes.class)
-		- for (var i = 0; i < data.items.length; i++)
-			div.col-12.col-md-6
-				div.team__item
-					&#43;&#35;{data.items[i].name}(data.items[i].arg)(class=data.items[i]['class'])
-	+start({
-		items: [
-			{
-				name: '',
-				arg: {
-					img: '',
-					name: '',
-					career: ''
-				},
-				class: ''
-			}
-		]
-	})
+  div.row(class!=attributes.class)
+    - for (var i = 0; i < data.items.length; i++)
+      div.col-12.col-md-6
+        div.team__item
+          &#43;&#35;{data.items[i].name}(data.items[i].arg)(class=data.items[i]['class'])
+  +start({
+    items: [
+      {
+        name: '',
+        arg: {
+          img: '',
+          name: '',
+          career: ''
+        },
+        class: ''
+      }
+    ]
+  })
 </code></pre>
                 </p>
                 <h2 id="page-info-mixin-10">Цикл с вызовом в элементе любой миксин. Так же статичные данные элемента цикла</h2>
                 <p>
                   <pre> <code class="language-pug">mixin startValue(data)
-	div.start-valueclass!=attributes.class)
-		p.text.text--16.text--bold.compound-value__title!=data.title
-		- for (var i = 0; i < data.items.length; i++)
-			div.compound-value__component
-				p.text.text--14.compound-value__dashe 
-					span!=data.items[i]['name']
-				p.text.text--14.compound-value__number!=data.items[i]['number']
+  div.start-valueclass!=attributes.class)
+    p.text.text--16.text--bold.compound-value__title!=data.title
+    - for (var i = 0; i < data.items.length; i++)
+      div.compound-value__component
+        p.text.text--14.compound-value__dashe 
+          span!=data.items[i]['name']
+        p.text.text--14.compound-value__number!=data.items[i]['number']
 
 +startValue({
-	title: ''.
-	items: [
-		{
-			name: '',
-			number: ''
-		}
-	]
+  title: ''.
+  items: [
+    {
+      name: '',
+      number: ''
+    }
+  ]
 })
 </code></pre>
                 </p>
                 <h2 id="page-info-mixin-11">Миксин с условиями</h2>
                 <p>
                   <pre> <code class="language-pug">mixin start(data)
-	div.start(class!=attributes.class)
-		if(data.tag == 'h1')
-			h1.start__title=data.text
+  div.start(class!=attributes.class)
+    if(data.tag == 'h1')
+      h1.start__title=data.text
 
-		if(data.tag == 'h2')
-			h2.start__title=data.text
+    if(data.tag == 'h2')
+      h2.start__title=data.text
 
 +start({tag: 'h1', text: ''})
 +start({tag: 'h2', text: ''})
@@ -205,39 +206,68 @@ img(src="images/"+data.img+"-400.jpg" srcset="images/"+data.img+"-400@2x.jpg 2x"
                 <h2 id="page-info-mixin-12">Миксин социальных кнопок</h2>
                 <p>
                   <pre> <code class="language-pug">mixin social(data)
-	ul.social(class!=attributes.class)
-		- for (var i = 0; i < data.length; i++)
-			li.social__item
-				a.social__link(href=data[i]['url'])
-					span.visually-hidden=data[i]['text']
-					+icon(data[i]['icon'], 'icon--32')
+  ul.social(class!=attributes.class)
+    - for (var i = 0; i < data.length; i++)
+      li.social__item
+        a.social__link(href=data[i]['url'])
+          span.visually-hidden=data[i]['text']
+          +icon(data[i]['icon'], 'icon--32')
 +social([
-	{url: '#', text: 'linkidin', icon: 'icon--32-linkidin'},
-	{url: '#', text: 'twiter', icon: 'icon--32-twiter'},
-	{url: '#', text: 'facebook', icon: 'icon--32-facebook'}
+  {url: '#', text: 'linkidin', icon: 'icon--32-linkidin'},
+  {url: '#', text: 'twiter', icon: 'icon--32-twiter'},
+  {url: '#', text: 'facebook', icon: 'icon--32-facebook'}
 ])</code></pre>
                 </p>
                 <h2 id="page-info-mixin-13">Миксин меню</h2>
                 <p>
                   <pre> <code class="language-pug">mixin menu(data)
-	nav.menu(class!=attributes.class)
-		p.h4!=data.title
-		ul.menu__list
-			- for (var i = 0; i < data.items.length; i++)
-				li.menu__item
-					+item-menu({icon: data.items[i]['icon'], text: data.items[i]['text']})
+  nav.menu(class!=attributes.class)
+    p.h4!=data.title
+    ul.menu__list
+      - for (var i = 0; i < data.items.length; i++)
+        li.menu__item
+          +item-menu({icon: data.items[i]['icon'], text: data.items[i]['text']})
 +menu({
-	title: '', 
-	items: [
-		{icon: '', text: ''},
-		{icon: '', text: ''}
-	]
+  title: '', 
+  items: [
+    {icon: '', text: ''},
+    {icon: '', text: ''}
+  ]
 })
 </code></pre>
                 </p>
-                <h2> </h2>
+                <h2 id="page-info-mixin-14">Правильный вызов цикла массива</h2>
                 <p>
-                  <pre> <code class="language-pug"></code></pre>
+                  <pre> <code class="language-pug">mixin info-block(data)
+  div.info-block
+    if data.title
+      h2.info-block__title!=data.title
+
+    if data.items
+      each item in data.items
+        a.link.info-block__link(href=item.url)!=item.link
+
+    if data.itemsText
+      each itemText in data.itemsText
+        if itemText.text
+          p.info-block__text!=itemText.text
+
+        if itemText.code
+          p.info-block__text
+            code.info-block__code!=itemText.code
+
++info-block({
+  title: "Подсказки по CSS, фишки по сss.",
+  items: [
+    {url: "https://learn.javascript.ru/css-selectors", link: "CSS селекторы"},,
+  ],
+  itemsText: [
+    {
+      text: "Стили для портретной ориентации",
+      code: "@media only screen and (orientation: portrait){ }"
+    },
+  ]
+  })</code></pre>
                 </p>
               </div>
             </section>

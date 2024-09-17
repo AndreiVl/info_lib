@@ -1,0 +1,1155 @@
+
+<html lang="ru">
+    <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="icon" href="images/favicon.ico"/>
+      <title></title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/vs2015.min.css"/>
+      <link href="css/jquery.modal.min.css" rel="stylesheet"/>
+      <link href="css/prism.css" rel="stylesheet"/>
+      <link href="css/style.css" rel="stylesheet"/>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script><!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    </head>
+  <body>
+    <div class="wrapper">
+            <section class="page-info">
+              <div class="page-info__sidebar">
+                <div class="page-info__wrapper-menu">
+                  <div class="page-info__menu">
+                    <h2 class="page-info__title">Меню</h2>
+                    <ol class="page-info__menu-list">
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-1">TypeScript</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-2"> Работа с асинхронными операциями в TypeScript: базовые работы с промисами</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-3">Обработка ошибок в запросе</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-4">Разрешение цепочки промисов</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-5"> Разница между async/await и .then()</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-6">Архетектура</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-7">Стейт менеджер</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-8">Профиливание и отладка.</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-9">Инфра</a></li>
+                      <li class="page-info__menu-item"><a class="page-info__menu-link link-anchor" href="#page-info-training-other-10">Безопасность</a></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <div class="page-info__body">
+                <h2 id="page-info-training-other-1">Занятие 1: TypeScript</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <p>TypeScript — это язык программирования, разработанный Microsoft, который является надмножеством JavaScript и добавляет статическую типизацию, поддержку новых функций ES6/ES7 и дополнительные возможности для более удобной разработки.</p>
+                    <p>TypeScript — это строго типизированное надмножество JavaScript, которое добавляет статическую типизацию и другие возможности для улучшения разработки. TypeScript предоставляет множество типов данных, чтобы улучшить читабельность и предсказуемость кода.</p>
+                    <ul> 
+                      <li> 
+                        <p> <b>Зачем нужен TypeScript?</b></p>
+                        <p> <b>Статическая типизация:</b>TypeScript позволяет объявлять типы данных для переменных, функций и объектов. Это позволяет обнаруживать ошибки на этапе компиляции, а не в процессе выполнения, что существенно снижает вероятность возникновения ошибок в коде.</p>
+                        <p> <b>Повышенная читаемость и поддерживаемость кода:</b>Благодаря статической типизации и возможности документировать код с помощью типов, он становится более предсказуемым и легким для понимания и поддержки.</p>
+                        <p> <b>Более удобный рефакторинг:</b>Типизация и поддержка современных инструментов разработки делают TypeScript идеальным выбором для рефакторинга и работы с крупными кодовыми базами. Современные IDE и редакторы, такие как Visual Studio Code, предоставляют подсказки типов, автозаполнение и мгновенную проверку типов, что упрощает работу с кодом.</p>
+                        <p> <b>Поддержка современных возможностей JavaScript:</b>TypeScript поддерживает все возможности последней спецификации JavaScript (ES6/ES7) и позволяет использовать их в проектах, независимо от уровня поддержки этих возможностей в браузерах.</p>
+                        <p> <b>Интерфейсы и типы данных:</b>TypeScript предоставляет возможность создавать интерфейсы и типы данных для лучшей структуры кода и определения контракта между различными частями системы. Это делает код более безопасным и менее подверженным ошибкам.</p>
+                        <p> <b>Масштабируемость:</b>TypeScript упрощает управление и поддержку крупных проектов за счет более строгих правил и инструментов статической типизации. Это делает его популярным выбором для разработки больших приложений в команде.</p>
+                        <p> <b>Популярность и поддержка сообщества:</b>TypeScript стал де-факто стандартом для разработки на JavaScript в крупных проектах, и его поддержка растет как среди </p>
+                      </li>
+                      <li> 
+                        <p> <b>Примитивные типы данных</b></p>
+                        <ol> 
+                          <li> <code class="page-info__code">number</code>: Представляет как целые числа, так и числа с плавающей запятой.
+                            <pre><code class="language-javascript">let num: number = 42;
+let float: number = 3.14;</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">string</code>:Для представления текстовых данных.
+                            <pre><code class="language-javascript">let str: string = 'Hello, TypeScript!';</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">boolean</code>:Для представления истинности (логических значений).
+                            <pre><code class="language-javascript">let isActive: boolean = true;</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">null</code>:Означает отсутствие значения.
+                            <pre><code class="language-javascript">let empty: null = null;</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">undefined</code>:Означает значение, не инициализированное или не определенное.
+                            <pre><code class="language-javascript">let notAssigned: undefined = undefined;</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">bigint</code>: Для представления больших целых чисел.
+                            <pre><code class="language-javascript">let big: bigint = 9007199254740991n;</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">symbol</code>:Для создания уникальных и неизменяемых значений.
+                            <pre><code class="language-javascript">let sym: symbol = Symbol('unique');</code></pre>
+                          </li>
+                        </ol>
+                        <p> <b>Более сложные типы данных</b></p>
+                        <ol> 
+                          <li> <code class="page-info__code">any</code>:  Тип, который отключает проверку типов. Используется, когда неизвестно, какой тип данных будет использован. Нужно использовать осторожно.
+                            <pre> <code class="language-javascript">let anything: any = 'string';
+anything = 42; // Также допустимо</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">unknown</code>: Похож на any, но требует проверки типа перед выполнением операций.
+                            <pre> <code class="language-javascript">let maybe: unknown = 'hello';
+if (typeof maybe === 'string') {
+  console.log(maybe.toUpperCase()); // Работает только после проверки типа
+}</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">void</code>: Используется для обозначения функции, которая ничего не возвращает.
+                            <pre> <code class="language-javascript">function logMessage(message: string): void {
+  console.log(message);
+}</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">never</code>: Используется для функций, которые никогда не возвращают значение (например, функции, которые всегда выбрасывают ошибку или содержат бесконечный цикл).
+                            <pre> <code class="language-javascript">function throwError(message: string): never {
+  throw new Error(message);
+}</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">array</code>: Тип для массивов.
+                            <pre> <code class="language-javascript">let numbers: number[] = [1, 2, 3, 4];
+let strings: Array&lt;string&gt; = ['one', 'two', 'three'];</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">tuple</code>: Тип для массивов фиксированной длины с фиксированными типами данных.
+                            <pre> <code class="language-javascript">let tuple: [string, number] = ['hello', 42];</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">object</code>: Тип для объектов. Можно определить типы для каждого свойства.
+                            <pre> <code class="language-javascript">let person: { name: string; age: number } = { name: 'Alice', age: 25 };</code></pre>
+                          </li>
+                          <li> <code class="page-info__code">enum</code>: Перечисления для определения множества именованных констант.
+                            <pre> <code class="language-javascript">enum Direction {
+  Up = 1,
+  Down,
+  Left,
+  Right,
+}
+
+let move: Direction = Direction.Up;
+</code></pre>
+                          </li>
+                        </ol>
+                      </li>
+                    </ul>
+                  </li>
+                  <li> 
+                    <p>Примеры:</p>
+                    <p> <b>Пример использования TypeScript</b>
+                      <pre><code class="language-javascript">// Определяем интерфейс для пользователя
+interface User {
+  id: number;
+  name: string;
+  age?: number; // необязательное свойство
+}
+
+// Функция, принимающая объект типа User
+function greetUser(user: User): string {
+  return `Hello, ${user.name}`;
+}
+
+// Создаем объект пользователя
+const user: User = { id: 1, name: 'Alice' };
+
+// Вызываем функцию
+console.log(greetUser(user)); // Hello, Alice</code></pre>
+                      <p>В этом примере использование интерфейса и строгой типизации позволяет избежать ошибок, связанных с передачей неправильных данных, и делает код более читаемым и безопасным.</p>
+                    </p>
+                  </li>
+                  <li>
+                    <p>Практика</p>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-2">Занятие 2:  Работа с асинхронными операциями в TypeScript: базовые работы с промисами</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <p>Асинхронные операции в TypeScript обрабатываются так же, как и в JavaScript, используя Promises (промисы), async/await и другие методы. Промисы предоставляют удобный способ обработки асинхронного кода, позволяя вам выполнять действия, как только данные станут доступны.</p>
+                  </li>
+                  <li> 
+                    <p>Примеры</p>
+                    <pre><code class="language-javascript">const fetchData = (url: string): Promise&lt;string&gt; = > {
+return new Promise((resolve, reject) = > {
+  setTimeout(() = > {
+    const success = Math.random() &gt; 0.5; // Имитируем успешный или неуспешный запрос
+    if (success) {
+      resolve('Data received from ' + url);
+    } else {
+      reject('Error fetching data from ' + url);
+    }
+  }, 1000);
+  });
+};
+
+// Использование промиса
+fetchData('https://api.example.com/data')
+  .then((data) = > {
+    console.log(data);
+  })
+  .catch((error) = > {
+    console.error(error);
+});</code></pre>
+                    <p>В этом примере <code class="page-info__code">fetchData</code>возвращает промис, который будет либо выполнен с данными (<code class="page-info__code">resolve</code>), либо отклонен с ошибкой (<code class="page-info__code">reject</code>). Затем можно использовать методы <code class="page-info__code">.then()</code>и <code class="page-info__code">.catch()</code>для обработки результата или ошибки.</p>
+                  </li>
+                  <li> 
+                    <p>Практика</p>
+                    <p>Создайте функцию getRandomNumber, которая возвращает промис. Промис должен разрешиться через 2 секунды с случайным числом от 1 до 10. Затем вызовите эту функцию и выведите результат в консоль.</p>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-3">Занятие 3: Обработка ошибок в запросе</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <p>Ошибки можно обрабатывать с помощью метода <code class="page-info__code">.catch()</code>в цепочке промисов. При этом вы можете перехватывать любые ошибки, возникающие при выполнении асинхронных операций.</p>
+                  </li>
+                  <li> 
+                    <p>Примеры</p>
+                    <pre> <code class="language-javascript">const fetchDataWithErrorHandling = (url: string): Promise&lt;string&gt; = > {
+  return new Promise((resolve, reject) = > {
+    setTimeout(() = > {
+      const success = Math.random() &gt; 0.5;
+      if (success) {
+        resolve('Data received from ' + url);
+      } else {
+        reject(new Error('Error fetching data from ' + url));
+      }
+    }, 1000);
+  });
+};
+
+fetchDataWithErrorHandling('https://api.example.com/data')
+  .then((data) = > {
+    console.log(data);
+  })
+  .catch((error: Error) = > {
+    console.error('An error occurred:', error.message);
+  });</code></pre>
+                    <p>Здесь ошибка обрабатывается в блоке <code class="page-info__code">.catch()</code>, где мы используем Error для создания более детализированного сообщения об ошибке.</p>
+                  </li>
+                  <li> 
+                    <p>Практика</p>
+                    <p>Создайте функцию fetchUserData, которая возвращает промис. Промис должен отклониться с ошибкой "Failed to fetch user data" через 1 секунду. Используйте .catch() для обработки ошибки и выведите сообщение ошибки в консоль.</p>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-4">Занятие 4: Разрешение цепочки промисов</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <p>Цепочка промисов позволяет выполнять несколько асинхронных операций последовательно. Результат каждого последующего вызова <code class="page-info__code">.then()</code>зависит от результата предыдущего.</p>
+                  </li>
+                  <li> 
+                    <p>Примеры</p>
+                    <pre> <code class="language-javascript">const step1 = (): Promise&lt;string&gt; = > {
+  return new Promise((resolve) = > {
+    setTimeout(() = > resolve('Step 1 completed'), 1000);
+  });
+};
+
+const step2 = (): Promise&lt;string&gt; = > {
+  return new Promise((resolve) = > {
+    setTimeout(() = > resolve('Step 2 completed'), 1000);
+  });
+};
+
+const step3 = (): Promise&lt;string&gt; = > {
+  return new Promise((resolve) = > {
+    setTimeout(() = > resolve('Step 3 completed'), 1000);
+  });
+};
+
+// Цепочка промисов
+step1()
+  .then((result1) = > {
+    console.log(result1); // Step 1 completed
+    return step2();
+  })
+  .then((result2) = > {
+    console.log(result2); // Step 2 completed
+    return step3();
+  })
+  .then((result3) = > {
+    console.log(result3); // Step 3 completed
+  })
+  .catch((error) = > {
+    console.error('An error occurred in the chain:', error);
+  });</code></pre>
+                    <p>В этом примере каждый следующий шаг будет выполнен только после завершения предыдущего, а в случае ошибки в любом шаге весь процесс будет прерван, и ошибка будет обработана в блоке <code class="page-info__code">.catch()</code>.</p>
+                  </li>
+                  <li> 
+                    <p>Практика</p>
+                    <p>Создайте три функции stepOne, stepTwo и stepThree, каждая из которых возвращает промис, который разрешается через 1 секунду и выводит в консоль сообщение: "Step 1 completed", "Step 2 completed" и "Step 3 completed". Затем создайте цепочку промисов, чтобы выполнить эти три функции последовательно.</p>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-5">Занятие 5:  Разница между async/await и .then()</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <p> <code class="page-info__code">async/await</code>и <code class="page-info__code">.then()</code>— два способа работы с промисами, но они имеют различные подходы к написанию кода и обработке асинхронных операций.
+                      <p> <b>Использование <code class="page-info__code">async/await</code></b></p>
+                      <p> <code class="page-info__code">async/await</code>предоставляет более синхронный синтаксис для работы с промисами, который делает код более читаемым и понятным.</p>
+                    </p>
+                    <p> <b>Различия между <code class="page-info__code">async/await</code>и <code class="page-info__code">.then()</code>:</b></p>
+                    <ol> 
+                      <li> <b>Читаемость кода:</b>Код с <code class="page-info__code">async/await</code>более читаемый и линейный. Он выглядит как обычный синхронный код, что упрощает его понимание, особенно при работе с большим количеством асинхронных операций. В то же время <code class="page-info__code">.then()</code>создает вложенность, что может привести к "адау обратных вызовов" (<code class="page-info__code">callback hell</code>).</li>
+                      <li> <b>Обработка ошибок: </b><code class="page-info__code">async/await</code>использует <code class="page-info__code">try/catch</code>для обработки ошибок, что позволяет объединять всю логику обработки ошибок в одном месте. В случае с <code class="page-info__code">.then()</code>для обработки ошибок необходимо добавить <code class="page-info__code">.catch()</code>в конце цепочки.</li>
+                      <li> <b>Управление асинхронными операциями: </b><code class="page-info__code">async/await</code>позволяет использовать конструкции управления потоком, такие как <code class="page-info__code">if, for,</code>и другие, прямо внутри асинхронной функции. Это делает код более гибким и простым в написании.</li>
+                      <li> <b>Совместимость: </b><code class="page-info__code">.then()</code>работает во всех средах, поддерживающих промисы, а <code class="page-info__code">async/await</code>требует поддержки ES2017. Это редко является проблемой, так как большинство современных сред и браузеров поддерживают <code class="page-info__code">async/await.</code></li>
+                    </ol>
+                  </li>
+                  <li> 
+                    <p>Примеры</p>
+                    <pre> <code class="language-javascript">const fetchDataAsync = async (url: string): Promise&lt;void&gt; = > {
+  try {
+    const data = await fetchDataWithErrorHandling(url);
+    console.log(data);
+  } catch (error) {
+    console.error('An error occurred:', (error as Error).message);
+  }
+};
+
+fetchDataAsync('https://api.example.com/data');</code></pre>
+                  </li>
+                  <li> 
+                    <p>Практика</p>
+                    <ul> 
+                      <li> 
+                        <p>Создайте функцию fetchDataAsync с использованием async/await, которая вызывает функцию fetchUserData (из задачи 2) и обрабатывает ошибку с помощью try/catch. После этого создайте аналогичный пример с использованием .then().</p>
+                      </li>
+                      <li>
+                        <p>Создание функции с промисом, который разрешается или отклоняется в зависимости от случайного числа: Создайте функцию, которая возвращает промис, который разрешается или отклоняется в зависимости от того, больше ли случайное число 0.5. Обработайте оба случая.</p>
+                      </li>
+                      <li>
+                        <p>Асинхронный вызов нескольких функций с задержкой: Напишите несколько функций, каждая из которых возвращает промис, разрешающийся через случайное количество времени. Выполните их одновременно с использованием Promise.all и отобразите результат.</p>
+                      </li>
+                      <li>
+                        <p>Создание цепочки промисов с зависимостями: Напишите несколько функций, каждая из которых возвращает промис, и каждая следующая функция зависит от результата предыдущей. Используйте .then() и async/await для реализации решения.</p>
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-6">Занятие 6: Архетектура</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <ul> 
+                      <li> <b>Компонента и зона ответственности: как их тестировать</b>
+                        <p>В архитектуре приложений на React и других фреймворках каждая компонента должна иметь свою зону ответственности. Это означает, что каждый компонент должен выполнять только те функции, для которых он предназначен. Разделение ответственности помогает улучшить читаемость кода, упрощает его поддержку и тестирование.</p>
+                        <p> <b>Зоны ответственности компонентов можно разделить на два типа:</b></p>
+                        <ul> 
+                          <li> Презентационные компоненты (stateless components): отвечают за отображение данных и UI. Они не управляют состоянием и не содержат бизнес-логики. Чаще всего они реализованы в виде функциональных компонентов.</li>
+                          <li> Контейнерные компоненты (stateful components): управляют состоянием и логикой данных, обрабатывают взаимодействие с внешними сервисами и хранилищами данных. Они часто реализованы как классовые компоненты или с использованием хуков.</li>
+                        </ul>
+                        <p> <b>Как тестировать:</b></p>
+                        <ul> 
+                          <li>Презентационные компоненты: Тестирование заключается в проверке, правильно ли отображаются данные, переданные через <code class="page-info__code">props</code>. Обычно для этого используют <code class="page-info__code">Jest</code>и <code class="page-info__code">React Testing Library.</code></li>
+                          <li>Контейнерные компоненты: Тестирование заключается в проверке корректности взаимодействия с внешними сервисами, стейт-менеджерами и валидации данных.</li>
+                        </ul>
+                      </li>
+                      <li> <b>Понимание бизнес-слоя и сервисного слоя</b>
+                        <p>В многослойной архитектуре приложения выделяются разные слои для различных аспектов приложения:</p>
+                        <ul> 
+                          <li> <b>Бизнес-слой (Business Layer)</b>: управляет бизнес-логикой приложения. Здесь происходит обработка данных, их валидация и применение бизнес-правил.</li>
+                          <li> <b>Сервисный слой (Service Layer)</b>: отвечает за взаимодействие с внешними источниками данных, такими как базы данных или API. Он выполняет операции CRUD (Create, Read, Update, Delete) и является посредником между бизнес-логикой и внешними системами.</li>
+                        </ul>
+                        <p>Разделение этих слоев помогает в организации кода и упрощает его поддержку и тестирование.</p>
+                      </li>
+                      <li> <b>Понимание умных компонентов</b>
+                        <p>Умные компоненты (Smart Components) — это компоненты, которые содержат бизнес-логику и управляют состоянием приложения. Они взаимодействуют с хранилищем данных (например, Redux), вызывают сервисы и передают данные в презентационные компоненты (глупые компоненты). Умные компоненты управляют жизненным циклом данных и являются "главным мозгом" приложения.</p>
+                        <ul> 
+                          <li>Содержат логику для работы с данными (получение, изменение, удаление).</li>
+                          <li>Управляют состоянием (state) и передают его в дочерние компоненты через <code class="page-info__code">props.</code></li>
+                          <li>Чаще всего взаимодействуют с сервисным и бизнес-слоями.</li>
+                          <li>Умные компоненты содержат логику, которая определяет, как приложение должно функционировать. Они выполняют операции, такие как фильтрация данных, манипуляция состоянием, вызовы API, и другие действия, которые связаны с бизнес-правилами.</li>
+                          <li>Бизнес-логика может быть реализована с помощью локальных функций или внешних сервисов (утилит, классов), которые инкапсулируют повторяющиеся или сложные операции.</li>
+                          <li>Умные компоненты часто отвечают за выполнение сетевых запросов и взаимодействие с сервером или внешними сервисами. Например, они могут запрашивать данные о пользователях, обновлять состояние приложения на основе полученных данных и обрабатывать ошибки.</li>
+                          <li>Взаимодействие с API происходит обычно через fetch, axios или другие библиотеки.</li>
+                          <li>Умные компоненты обычно передают данные и функции-обработчики (колбэки) своим дочерним компонентам через пропсы. Это позволяет дочерним компонентам оставаться "глупыми" и сосредоточенными на отображении данных.</li>
+                          <li>Например, умный компонент может передать функцию для добавления элемента в корзину товару в дочерний компонент, отображающий карточку товара.</li>
+                          <li>Если используется глобальное состояние (например, Redux или Context API), умные компоненты могут подключаться к нему для чтения и записи данных. Это делает их ключевыми узлами в дереве компонентов, которые управляют потоком данных.</li>
+                        </ul>
+                        <p>Когда использовать умные компоненты?</p>
+                        <ul> 
+                          <li>Когда вам нужно управлять состоянием или бизнес-логикой в компоненте.</li>
+                          <li>Когда  компонент отвечает за взаимодействие с API или внешними сервисами.</li>
+                          <li>Когда требуется централизовать логику и состояние для нескольких презентационных компонентов.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li> 
+                    <p>Примеры использования компонентов:</p>
+                    <ul> 
+                      <li>Презентационные компоненты: отображение карточки пользователя, компонента для отображения списка товаров.</li>
+                      <li>Контейнерные компоненты: компоненты, которые загружают данные из API, управляют состоянием формы или взаимодействуют с Redux.</li>
+                    </ul>
+                    <pre><code class="language-javascript">// ProductCard.tsx (Презентационный компонент)
+import React from 'react';
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+}
+
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard: React.FC&lt;ProductCardProps&gt; = ({ product }) = > (
+  &lt;div className="product-card"&gt;
+    &lt;img src={product.imageUrl} alt={product.name} /&gt;
+    &lt;h2&gt;{product.name}&lt;/h2&gt;
+    &lt;p&gt;{product.price} USD&lt;/p&gt;
+  &lt;/div&gt;
+);
+
+export default ProductCard;</code></pre>
+                    <pre><code class="language-javascript">// ProductListContainer.tsx (Контейнерный компонент)
+import React, { useEffect, useState } from 'react';
+import ProductCard from './ProductCard';
+
+const ProductListContainer: React.FC = () = > {
+  const [products, setProducts] = useState&lt;Product[]&gt;([]);
+
+  useEffect(() = > {
+    fetch('https://fakestoreapi.com/products')
+      .then((res) = > res.json())
+      .then((data) = > setProducts(data));
+  }, []);
+
+  return (
+    &lt;div&gt;
+      {products.map((product) = > (
+        &lt;ProductCard key={product.id} product={product} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+};
+
+export default ProductListContainer;</code></pre>
+                    <pre><code class="language-javascript">// ProductCard.test.tsx (Тестирование ProductCard)
+import { render, screen } from '@testing-library/react';
+import ProductCard from './ProductCard';
+
+test('renders product card with name and price', () = > {
+  const mockProduct = { id: 1, name: 'Laptop', price: 1000, imageUrl: 'laptop.png' };
+
+  render(&lt;ProductCard product={mockProduct} /&gt;);
+
+  expect(screen.getByText('Laptop')).toBeInTheDocument();
+  expect(screen.getByText('1000 USD')).toBeInTheDocument();
+});
+</code></pre>
+                    <p>Примеры использования: бизнес-слоя и сервисного слоя</p>
+                    <ul> 
+                      <li>Бизнес-слой: валидация данных пользователя перед сохранением, расчет скидок для товаров.</li>
+                      <li>Сервисный слой: запрос данных из API, отправка данных на сервер.</li>
+                    </ul>
+                    <pre><code class="language-javascript">// UserService.ts (Сервисный слой)
+class UserService {
+  async fetchUsers(): Promise&lt;{ id: number; name: string }[]&gt; {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    return response.json();
+  }
+
+  async createUser(user: { name: string }): Promise&lt;void&gt; {
+    await fetch('https://jsonplaceholder.typicode.com/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    });
+  }
+}
+
+export default new UserService();</code></pre>
+                    <pre><code class="language-javascript">// UserBusiness.ts (Бизнес-слой)
+import UserService from './UserService';
+
+class UserBusiness {
+  async getUsersWithValidNames(): Promise&lt;{ id: number; name: string }[]&gt; {
+    const users = await UserService.fetchUsers();
+    return users.filter((user) = > user.name.length &gt; 3); // Простая логика валидации
+  }
+
+  async addUser(user: { name: string }): Promise&lt;void&gt; {
+    if (user.name.length &lt; 3) {
+      throw new Error('User name must be at least 3 characters long');
+    }
+    await UserService.createUser(user);
+  }
+}
+
+export default new UserBusiness();</code></pre>
+                    <p>Примеры использования умных компонентов:</p>
+                    <ul> 
+                      <li>Компоненты, которые управляют списком задач и выполняют операции создания, обновления и удаления.</li>
+                      <li>Компоненты, которые загружают данные из API и передают их в презентационные компоненты.</li>
+                    </ul>
+                    <pre><code class="language-javascript">// store/taskActions.ts (Redux Action)
+import { Dispatch } from 'redux';
+
+export const FETCH_TASKS_SUCCESS = 'FETCH_TASKS_SUCCESS';
+
+export const fetchTasks = () = > async (dispatch: Dispatch) = > {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+  const tasks = await response.json();
+  dispatch({ type: FETCH_TASKS_SUCCESS, payload: tasks });
+};</code></pre>
+                    <pre><code class="language-javascript">// store/taskReducer.ts (Redux Reducer)
+interface TaskState {
+  tasks: { id: number; title: string; completed: boolean }[];
+}
+
+const initialState: TaskState = {
+  tasks: [],
+};
+
+export const taskReducer = (state = initialState, action: any): TaskState = > {
+  switch (action.type) {
+    case FETCH_TASKS_SUCCESS:
+      return { ...state, tasks: action.payload };
+    default:
+      return state;
+  }
+};</code></pre>
+                    <pre><code class="language-javascript">// components/TaskManager.tsx (Умный компонент с Redux)
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTasks } from '../store/taskActions';
+
+const TaskManager: React.FC = () = > {
+  const dispatch = useDispatch();
+  const tasks = useSelector((state: any) = > state.task.tasks);
+
+  useEffect(() = > {
+    dispatch(fetchTasks());
+  }, [dispatch]);
+
+  return (
+    &lt;div&gt;
+      {tasks.map((task) = > (
+        &lt;div key={task.id}&gt;
+          &lt;p&gt;{task.title}&lt;/p&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+};
+
+export default TaskManager;
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import TaskList from './TaskList'; // Презентационный компонент
+
+interface Task {
+  id: number;
+  title: string;
+  completed: boolean;
+}</code></pre>
+                    <pre><code class="language-javascript">const TaskManager: React.FC = () = > {
+  const [tasks, setTasks] = useState&lt;Task[]&gt;([]);
+  const [loading, setLoading] = useState&lt;boolean&gt;(false);
+  const [error, setError] = useState&lt;string | null&gt;(null);
+
+  // Загрузка задач при монтировании компонента
+  useEffect(() = > {
+    setLoading(true);
+    axios
+      .get&lt;Task[]&gt;('/api/tasks')
+      .then((response) = > setTasks(response.data))
+      .catch((err) = > setError(err.message))
+      .finally(() = > setLoading(false));
+  }, []);
+
+  // Добавление новой задачи
+  const addTask = (title: string) = > {
+    const newTask: Task = { id: Date.now(), title, completed: false };
+    setTasks((prevTasks) = > [...prevTasks, newTask]);
+  };
+
+  // Обработка ошибок
+  if (error) {
+    return &lt;div&gt;Ошибка загрузки задач: {error}&lt;/div&gt;;
+  }
+
+  return (
+    &lt;div&gt;
+      {loading ? (
+        &lt;div&gt;Загрузка...&lt;/div&gt;
+      ) : (
+        &lt;TaskList tasks={tasks} onAddTask={addTask} /&gt;
+      )}
+    &lt;/div&gt;
+  );
+};
+
+export default TaskManager;
+</code></pre>
+                    <p>Контейнерный компонент TaskManager:
+                      <ul> 
+                        <li>Состояние и логика: Управляет состоянием tasks, loading и error.</li>
+                        <li>API запросы: Делает запрос на сервер для получения списка задач при монтировании.</li>
+                        <li>Функция добавления задачи: Добавляет задачу в список, обновляя состояние.</li>
+                        <li>Передача пропсов: Передает задачи и функцию addTask дочернему компоненту TaskList.</li>
+                      </ul>
+                    </p>
+                    <p>Презентационный компонент TaskList:
+                      <ul> 
+                        <li>Получает данные и функции через пропсы и не имеет своей логики состояния или бизнес-логики.</li>
+                        <li>Отвечает только за отображение списка задач и вызов функции добавления задачи.</li>
+                      </ul>
+                    </p>
+                  </li>
+                  <li> 
+                    <p>Практика</p>
+                    <ul> 
+                      <li> 
+                        <p>Создайте два компонента: <code class="page-info__code">ProductCard</code>(презентационный компонент) и <code class="page-info__code">ProductListContainer</code>(контейнерный компонент).</p>
+                        <p> <code class="page-info__code">ProductCard</code>отображает данные о продукте: название, цену и изображение.</p>
+                        <p> <code class="page-info__code">ProductListContainer</code>получает данные о продуктах из <code class="page-info__code">API</code>и передает их в <code class="page-info__code">ProductCard.</code></p>
+                      </li>
+                      <li> 
+                        <p>Напишите тесты для <code class="page-info__code">ProductCard</code>с использованием <code class="page-info__code">Jest и </code><code class="page-info__code">React Testing Library</code>, чтобы проверить правильность отображения данных.</p>
+                      </li>
+                      <li> 
+                        <p>Реализуйте <code class="page-info__code">UserService</code>для работы с API пользователей (получение и создание пользователей).</p>
+                      </li>
+                      <li> 
+                        <p>Реализуйте </p><code class="page-info__code">UserBusiness</code>слой, который использует UserService для получения пользователей и добавления бизнес-логики, такой как валидация данных перед добавлением пользователя.
+                      </li>
+                      <li> 
+                        <p>Создайте умный компонент TaskManager с использованием Redux для управления состоянием задач.</p>
+                      </li>
+                      <li> 
+                        <p>Реализуйте действия и редуктор для управления списком задач.</p>
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-7">Занятие 7: Стейт менеджер </h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <p> <b>Понимание Context API и управление состоянием на локальном уровне</b></p>
+                    <p>Context API в React — это встроенный механизм для управления глобальным состоянием приложения. Context позволяет передавать данные (например, состояние, функции и т.д.) через дерево компонентов, избегая необходимости явно передавать пропсы на каждом уровне. Context API особенно полезен для управления состоянием, которое должно быть доступно многим компонентам, не прибегая к проп-дриллингу.</p>
+                    <p>Для управления состоянием на локальном уровне обычно используют хуки, такие как <code class="page-info__code">useState</code>, <code class="page-info__code">useReducer</code>, <code class="page-info__code">useContext</code>, которые предоставляют гибкость для управления состоянием и создания компонент с минимальными зависимостями.</p>
+                    <p> <b>Работа со стором: настройка хранилища и добавление провайдера</b></p>
+                    <p>Для управления состоянием приложения можно использовать глобальное хранилище (store). Это необходимо, когда состояние должно быть доступно в различных частях приложения. Redux — один из наиболее популярных стейт-менеджеров, обеспечивающих централизованное хранилище состояния.</p>
+                    <p> <b>Основные шаги при настройке Redux Store:</b></p>
+                    <ol> 
+                      <li>Создание Actions и Reducers для описания изменений в состоянии.</li>
+                      <li>Настройка Store с использованием <code class="page-info__code">configureStore</code>или <code class="page-info__codec">reateStore</code>из <code class="page-info__code">Redux Toolkit</code>или <code class="page-info__code">Redux.</code></li>
+                      <li>Добавление провайдера (<code class="page-info__code">Provider</code>) из <code class="page-info__code">react-redux</code>в корневой компонент приложения.</li>
+                    </ol>
+                    <p> <b> В каких случаях использовать Context API или Prop Drilling</b></p>
+                    <p>Prop Drilling — это метод передачи данных через дерево компонентов от родительского компонента к дочернему и дальше, пока не будет достигнут нужный компонент. Этот подход подходит для небольших и простых приложений, но может стать проблемой в больших приложениях, так как усложняет поддержку и понимание кода.</p>
+                    <p>Context API используется для предотвращения prop-drilling. Он позволяет предоставлять данные из одного компонента и получать их в любом компоненте в дереве, не передавая через все промежуточные компоненты.</p>
+                    <p> <b>В каких случаях нужно подключать стор и какие стейт-менеджеры использовать</b></p>
+                    <p>Использование глобального стейт-менеджера, такого как Redux, MobX, Zustand, или Recoil, необходимо в случае:</p>
+                    <ul> 
+                      <li>Больших приложений с множеством компонент, зависящих от общего состояния.</li>
+                      <li>Сложной логики управления состоянием, которая требует использования middleware (например, для работы с асинхронными операциями).</li>
+                      <li>Когда необходимо организовать код и улучшить поддержку и тестируемость приложения.</li>
+                    </ul>
+                    <p>Выбирайте стейт-менеджер в зависимости от потребностей вашего приложения:</p>
+                    <ul> 
+                      <li>Redux: для больших приложений с предсказуемым управлением состоянием.</li>
+                      <li>MobX: для более гибких, но реактивных решений.</li>
+                      <li>Zustand, Recoil: для небольших и средних приложений.</li>
+                    </ul>
+                  </li>
+                  <li> 
+                    <p> <b>Примеры состояния</b></p>
+                    <ul> 
+                      <li>Использование <code class="page-info__code">useContext</code>и <code class="page-info__code">Context </code>API для управления глобальными данными, такими как текущий пользователь или тема оформления.</li>
+                      <li>Использование <code class="page-info__code">useState</code>для управления локальным состоянием, например, состояния формы или модального окна.</li>
+                      <li>Создание хранилища с <code class="page-info__code">useReducer</code>для управления сложными состояниями.</li>
+                    </ul>
+                    <pre> <code class="language-javascript">// ThemeContext.tsx (Контекст для темы)
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+type Theme = 'light' | 'dark';
+
+interface ThemeContextProps {
+  theme: Theme;
+  toggleTheme: () = > void;
+}
+
+const ThemeContext = createContext&lt;ThemeContextProps | undefined&gt;(undefined);
+
+export const ThemeProvider: React.FC&lt;{ children: ReactNode }&gt; = ({ children }) = > {
+  const [theme, setTheme] = useState&lt;Theme&gt;('light');
+
+  const toggleTheme = () = > {
+    setTheme((prevTheme) = > (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, toggleTheme }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+};
+
+export const useTheme = (): ThemeContextProps = > {
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error('useTheme must be used within a ThemeProvider');
+  return context;
+};</code></pre>
+                    <pre> <code class="language-javascript">// ThemeSwitcher.tsx (Компонент для переключения темы)
+import React from 'react';
+import { useTheme } from './ThemeContext';
+
+const ThemeSwitcher: React.FC = () = > {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    &lt;button onClick={toggleTheme}&gt;
+      Switch to {theme === 'light' ? 'dark' : 'light'} mode
+    &lt;/button&gt;
+  );
+};
+
+export default ThemeSwitcher;</code></pre>
+                    <pre> <code class="language-javascript">// LoginForm.tsx (Форма логина с использованием локального состояния и контекста)
+import React, { useState } from 'react';
+import { useUser } from './UserContext';
+
+const LoginForm: React.FC = () = > {
+  const [username, setUsername] = useState('');
+  const { setUser } = useUser();
+
+  const handleLogin = () = > {
+    // Логика авторизации...
+    setUser({ username });
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;input type="text" value={username} onChange={(e) = > setUsername(e.target.value)} /&gt;
+      &lt;button onClick={handleLogin}&gt;Login&lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default LoginForm;</code></pre>
+                    <p> <b>Примеры Работа со стором</b></p>
+                    <ul> 
+                      <li>Управление глобальными данными, такими как аутентификация, корзина товаров, настройки пользователя.</li>
+                      <li>Использование useSelector и useDispatch для взаимодействия с Redux-хранилищем в компонентах.</li>
+                    </ul>
+                    <pre> <code class="language-javascript">// store/cartSlice.ts (Redux Slice для корзины)
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+interface CartState {
+  items: CartItem[];
+}
+
+const initialState: CartState = {
+  items: [],
+};
+
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState,
+  reducers: {
+    addItem: (state, action: PayloadAction&lt;CartItem&gt;) = > {
+      state.items.push(action.payload);
+    },
+    removeItem: (state, action: PayloadAction&lt;number&gt;) = > {
+      state.items = state.items.filter((item) = > item.id !== action.payload);
+    },
+    updateQuantity: (state, action: PayloadAction&lt;{ id: number; quantity: number }&gt;) = > {
+      const item = state.items.find((item) = > item.id === action.payload.id);
+      if (item) item.quantity = action.payload.quantity;
+    },
+  },
+});
+
+export const { addItem, removeItem, updateQuantity } = cartSlice.actions;
+export default cartSlice.reducer;</code></pre>
+                    <pre> <code class="language-javascript">// store/store.ts (Настройка Store)
+import { configureStore } from '@reduxjs/toolkit';
+import cartReducer from './cartSlice';
+
+export const store = configureStore({
+  reducer: {
+    cart: cartReducer,
+  },
+});
+
+export type RootState = ReturnType&lt;typeof store.getState&gt;;
+export type AppDispatch = typeof store.dispatch;</code></pre>
+                    <pre> <code class="language-javascript">// App.tsx (Добавление Provider)
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import Cart from './components/Cart';
+
+const App: React.FC = () = > (
+  &lt;Provider store={store}&gt;
+    &lt;Cart /&gt;
+  &lt;/Provider&gt;
+);
+
+export default App;</code></pre>
+                    <p> <b>Примеры использования Context API или Prop Drilling</b></p>
+                    <ul> 
+                      <li>Используйте Context API, когда данные или функции должны быть доступны многим компонентам, а передача через props будет сложной.</li>
+                      <li>Используйте Prop Drilling для небольших приложений или в тех случаях, когда данные нужно передать на один-два уровня ниже.</li>
+                    </ul>
+                    <pre> <code class="language-javascript">// UserContext.tsx (Контекст для пользователя)
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+interface User {
+  name: string;
+  age: number;
+}
+
+interface UserContextProps {
+  user: User;
+  setUser: (user: User) = > void;
+}
+
+const UserContext = createContext&lt;UserContextProps | undefined&gt;(undefined);
+
+export const UserProvider: React.FC&lt;{ children: ReactNode }&gt; = ({ children }) = > {
+  const [user, setUser] = useState&lt;User&gt;({ name: 'John Doe', age: 30 });
+
+  return &lt;UserContext.Provider value={{ user, setUser }}&gt;{children}&lt;/UserContext.Provider&gt;;
+};
+
+export const useUser = (): UserContextProps = > {
+  const context = useContext(UserContext);
+  if (!context) throw new Error('useUser must be used within a UserProvider');
+  return context;
+};</code></pre>
+                    <p>Redux для управления состоянием аутентификации, корзины и других глобальных данных в интернет-магазине.</p>
+                    <p>MobX для создания реактивных приложений с меньшим количеством boilerplate-кода.</p>
+                  </li>
+                  <li> 
+                    <p>Практика</p>
+                    <ul> 
+                      <li>Создайте ThemeContext с двумя темами: светлая и темная. Реализуйте переключатель темы (ThemeSwitcher), который будет менять тему приложения. Используйте useContext для управления темой в разных компонентах.</li>
+                      <li>Реализуйте форму логина (LoginForm) с использованием локального состояния (useState) и контекста пользователя (UserContext). При успешной авторизации обновляйте данные пользователя в контексте.</li>
+                      <li>Создайте Redux Store для управления состоянием корзины товаров в интернет-магазине. Реализуйте действия для добавления, удаления и изменения количества товара в корзине.</li>
+                      <li>Настройте Provider для оборачивания корневого компонента приложения. Используйте useSelector для получения списка товаров в корзине и useDispatch для добавления товаров.</li>
+                      <li>Создайте компонент UserProfile и UserInfo, где данные профиля пользователя передаются через prop-drilling.</li>
+                      <li>Затем измените реализацию, используя UserContext и useContext для предоставления и получения данных пользователя.</li>
+                      <li>Настройте Redux хранилище для управления пользователями и списком задач в приложении.</li>
+                      <li>Создайте небольшой компонент с использованием Recoil для управления состоянием формы и хранения локальных данных.</li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-8">Занятие 8:  Профиливание и отладка.</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <ol> 
+                      <li> <b>Просмотр состояния ответа от бэкенда</b>
+                        <ul> 
+                          <li> 
+                            <p>Использование сетевых инструментов браузера:</p>
+                            <p>Описание: Браузеры имеют встроенные инструменты для просмотра сетевых запросов и ответов. Вы можете использовать эти инструменты для отладки взаимодействия между фронтендом и бэкендом.</p>
+                            <p>Как использовать:</p>
+                            <ul> 
+                              <li>Откройте Инструменты разработчика вашего браузера (обычно через <code class="page-info__code">F12 </code>или <code class="page-info__code">Ctrl+Shift+I</code>).</li>
+                              <li>Перейдите на вкладку Network (Сеть).</li>
+                              <li>Выполните действие, которое вызывает сетевой запрос (например, загрузка данных с API).</li>
+                              <li>Найдите интересующий запрос в списке и посмотрите его детали, включая заголовки, тело запроса и ответа.</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li> <b>Инструменты для отладки приложений:</b>
+                        <ul> 
+                          <li> 
+                            <p> <b>Chrome DevTools:</b></p>
+                            <p>Описание: Мощный набор инструментов для отладки веб-приложений. Включает вкладки для просмотра сети, консоли, элементов DOM, источников и т.д.</p>
+                            <p>Основные функции: Отладка JavaScript, инспекция HTML/CSS, анализ производительности, управление кэшом.</p>
+                          </li>
+                          <li> 
+                            <p> <b>React Developer Tools:</b></p>
+                            <p>Описание: Расширение для браузера, которое добавляет вкладки Components и Profiler в инструменты разработчика.</p>
+                            <p>Основные функции: Просмотр дерева компонентов, управление состоянием и пропсами, профилирование производительности компонентов.</p>
+                          </li>
+                          <li> <b>Redux DevTools:</b>
+                            <p>Описание: Расширение для браузера, которое позволяет отслеживать состояние и действия Redux в реальном времени.</p>
+                            <p>Основные функции: Просмотр состояния хранилища, запись и воспроизведение действий, анализ изменения состояния.</p>
+                          </li>
+                          <li> <b>Postman</b>
+                            <p>Описание: Инструмент для тестирования и отладки API-запросов.</p>
+                            <p>Основные функции: Отправка HTTP-запросов, управление коллекциями запросов, анализ ответов.</p>
+                          </li>
+                        </ul>
+                      </li>
+                      <li> <b> Хранилище, кукисы, LocalStorage и SessionStorage</b>
+                        <p>Просмотр данных хранилища и кукисов через DevTools:</p>
+                        <p>Описание: Вкладки Application (Приложение) в DevTools позволяют просматривать данные хранилища, кукисы и другие данные, сохраненные на стороне клиента.</p>
+                        <p>Как использовать:</p>
+                        <ul> 
+                          <li>Откройте Инструменты разработчика вашего браузера.</li>
+                          <li>Перейдите на вкладку Application (Приложение).</li>
+                          <li>В разделе Storage (Хранилище) вы найдете Local Storage, Session Storage, Cookies и другие данные.</li>
+                          <li>Вы можете просматривать, редактировать и удалять данные.</li>
+                        </ul>
+                      </li>
+                      <li> <b>Точки останова и отладка React-приложений</b>
+                        <p> <b>Установка точек останова:</b></p>
+                        <p>Описание: Точки останова позволяют приостановить выполнение кода в определенных местах, чтобы проанализировать текущее состояние приложения.</p>
+                        <ul> 
+                          <li>Откройте Инструменты разработчика и перейдите на вкладку Sources (Источники).</li>
+                          <li>Найдите файл с вашим кодом.</li>
+                          <li>Кликните на номер строки, где вы хотите установить точку останова.</li>
+                          <li>Перезапустите приложение или выполните действие, которое вызовет выполнение кода на этой строке.</li>
+                        </ul>
+                        <p> <b>Использование отладчика в React:</b></p>
+                        <p>Описание: Вы можете использовать стандартные отладочные средства JavaScript, такие как debugger и console.log(), для анализа выполнения кода.</p>
+                        <pre> <code class="language-javascript">const handleClick = () = > {
+  debugger; // Выполнение остановится здесь, если точка останова активна
+  console.log('Кнопка нажата');
+};</code></pre>
+                      </li>
+                      <li> <b>React Developer Tools и дебаггер</b>
+                        <p>React Developer Tools: Расширение для браузера, которое предоставляет визуальные инструменты для работы с компонентами React и их состоянием.</p>
+                        <ul> 
+                          <li>Установите React Developer Tools для вашего браузера.</li>
+                          <li>Откройте Инструменты разработчика и найдите вкладку Components.</li>
+                          <li>Вы можете просматривать и изменять состояние и пропсы компонентов, а также наблюдать изменения в реальном времени.</li>
+                        </ul>
+                        <p>Использование дебаггера в React:</p>
+                        <p>Дебаггер позволяет пошагово проходить код, отслеживать значения переменных и управлять выполнением.</p>
+                        <ul> 
+                          <li>Установите точку останова в нужном месте.</li>
+                          <li>Запустите отладку в браузере.</li>
+                          <li>Используйте панели управления для пошагового выполнения и анализа состояния.</li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </li>
+                  <li> 
+                    <p>Профилирование и отладка являются критическими аспектами разработки React-приложений. Использование инструментов, таких как React Developer Tools, сетевых инструментов браузера и стандартных отладочных методов, помогает эффективно управлять состоянием, отслеживать производительность и решать возникающие проблемы в коде.</p>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-">Занятие : Инфра</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <p> <b>Создание простого Create React App</b></p>
+                    <p>Create React App (CRA) — это удобный инструмент командной строки для создания стандартных React-приложений с минимальной конфигурацией. Он автоматически настраивает все необходимые зависимости, такие как Webpack, Babel, ESLint, и позволяет сосредоточиться на разработке.</p>
+                    <p> <b>Работа с командами в package.json</b></p>
+                    <p>В файле package.json описаны все зависимости и скрипты, которые можно запускать с помощью npm. С помощью этих скриптов можно автоматизировать запуск тестов, сборку приложения, форматирование кода и т.д.</p>
+                    <p>Основные команды в <code class="page-info__code">package.json</code>:</p>
+                    <ul> 
+                      <li> <code class="page-info__code">start</code>: запускает локальный сервер разработки.</li>
+                      <li> <code class="page-info__code">build</code>: создает production-сборку проекта.</li>
+                      <li> <code class="page-info__code">test</code>: запускает тесты с использованием Jest.</li>
+                      <li> <code class="page-info__code">eject</code>: извлекает скрытую конфигурацию CRA, позволяя изменять ее.</li>
+                    </ul>
+                    <p> <b>Развертывание локального проекта по инструкции</b></p>
+                    <p>При работе в команде или развертывании проекта на новой машине необходимо следовать инструкциям для развертывания. Обычно они включают установку зависимостей, запуск сборки и настройку окружения.</p>
+                    <p> <b>Prettier, сборщики проекта и навыки их настройки</b></p>
+                    <p>Prettier — это инструмент для автоматического форматирования кода в едином стиле. Он позволяет поддерживать читаемость кода и упрощает совместную работу в команде.</p>
+                    <p>Сборщики проекта (такие как Webpack и Babel) позволяют трансформировать и оптимизировать код для выполнения в различных окружениях.</p>
+                  </li>
+                  <li> 
+                    <p>Примеры</p>
+                    <p><b>Создание простого Create React App</b></p>
+                    <p>Установка Create React App: Убедитесь, что у вас установлен Node.js (версии 12 и выше) и npm. Установите create-react-app глобально:</p>
+                    <pre> <code class="language-bash">npx create-react-app my-app
+cd my-app</code></pre>
+                    <p>Запуск проекта: После установки зависимостей можно запустить проект:</p>
+                    <pre> <code class="language-bash">npm start</code></pre>
+                    <p>Откроется локальный сервер по адресу http://localhost:3000, и вы увидите стартовую страницу React-приложения.</p>
+                    <p> <b>package.json:</b></p>
+                    <pre> <code class="language-json">{
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write src/**/*.js"
+  }
+}</code></pre>
+                    <p>Пример инструкций для развертывания:</p>
+                    <ol> 
+                      <li> <b>Клонируйте репозиторий:</b>
+                        <pre> <code class="language-bash">git clone https://github.com/your-repo/my-app.git
+cd my-app</code></pre>
+                      </li>
+                      <li> <b>Установите зависимости:</b>
+                        <pre> <code class="language-bash">npm install</code></pre>
+                      </li>
+                      <li> <b>Запустите локальный сервер разработки:</b>
+                        <pre> <code class="language-bash">npm start</code></pre>
+                      </li>
+                      <li> <b>Создайте production-сборку:</b>
+                        <pre> <code class="language-bash">npm run build</code></pre>
+                      </li>
+                    </ol>
+                    <p> <b>Установка и настройка Prettier:</b></p>
+                    <ol> 
+                      <li> <b> </b>
+                        <pre> <code class="language-bash">npm install --save-dev prettier</code></pre><b>Создайте файл <code class="page-info__code">.prettierrc </code>в корне проекта и добавьте туда:</b>
+                        <pre> <code class="language-json">{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5"
+}</code></pre><b>Добавьте скрипт <code class="page-info__code">format</code>в <code class="page-info__code">package.json</code>:</b>
+                        <pre> <code class="language-json">"scripts": {
+  "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\""
+}
+</code></pre>
+                      </li>
+                      <li> <b>Настройка Webpack и Babel: Если вы используете <code class="page-info__code">eject</code>в CRA или создаете проект с нуля, настройка Webpack и Babel может выглядеть следующим образом:</b>
+                        <p>Создайте файл webpack.config.js:</p>
+                        <pre> <code class="language-js">const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    port: 3000
+  }
+};</code></pre>
+                        <p>Создайте файл .babelrc:</p>
+                        <pre> <code class="language-json">{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}           
+
+</code></pre>
+                      </li>
+                    </ol>
+                  </li>
+                  <li> 
+                    <p>Практика</p>
+                    <ul> 
+                      <li>Создайте новое приложение с помощью Create React App.</li>
+                      <li>Попробуйте изменить текст в App.js и увидеть изменения на локальном сервере.</li>
+                      <li>Добавьте команду lint в package.json для запуска eslint и команду format для запуска prettier.</li>
+                      <li>Настройте проект так, чтобы при запуске npm run lint происходила проверка кода на ошибки.</li>
+                      <li>Напишите пошаговую инструкцию для развертывания вашего React-приложения на новой машине.</li>
+                      <li>Проверьте, что ваше приложение запускается на другой машине, следуя этой инструкции.</li>
+                      <li>Настройте Prettier в своем проекте и добавьте команду format для автоматического форматирования кода.</li>
+                      <li>Используйте eject в CRA и настройте Webpack и Babel для оптимизации и трансформации кода.</li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="page-info-training-other-10">Занятие 10: Безопасность</h2>
+                <ol>
+                  <li> 
+                    <p>Теория:</p>
+                    <p>Безопасность веб-приложений — важный аспект разработки, который помогает защитить данные пользователей и избежать уязвимостей, таких как XSS (Cross-Site Scripting), SQL-инъекции и другие. Рассмотрим ключевые моменты, связанные с безопасностью в контексте веб-разработки:</p>
+                    <ol> 
+                      <li> 
+                        <p> <b> Понимание опасности innerHTML, eval и процедуры для экранирования</b></p>
+                        <p> <code class="page-info__code">innerHTML</code>: Использование свойства <code class="page-info__code">innerHTML</code>для вставки HTML-кода из строк может привести к уязвимостям, таким как XSS (межсайтовый скриптинг). Это происходит, когда небезопасный пользовательский ввод напрямую вставляется в HTML-структуру, что позволяет злоумышленникам выполнять произвольные скрипты на странице.</p>
+                        <p> <code class="page-info__code">eval</code>: Функция <code class="page-info__code">eval()</code>выполняет строку кода JavaScript. Она очень опасна, так как любой пользовательский ввод, переданный в <code class="page-info__code">eval()</code>, может привести к выполнению произвольного кода и открыть возможности для XSS-атак. Использование <code class="page-info__code">eval()</code>всегда считается плохой практикой и не рекомендуется.</p>
+                        <p>Экранирование (Sanitization): Это процесс обработки пользовательского ввода для удаления или экранирования опасных символов или кодов. Экранирование помогает предотвратить XSS-атаки, удаляя потенциально опасные HTML-теги и JavaScript-код.</p>
+                      </li>
+                      <li> 
+                        <p> <b> Полиморфизм и работа с пользовательским вводом</b></p>
+                        <p>Полиморфизм ввода данных — это практика, связанная с пониманием того, что данные, поступающие от пользователя, могут быть изменены или подвержены злоупотреблению. Всегда следует учитывать, что данные из внешних источников могут быть не доверенными.</p>
+                        <p> <b>Основные способы защиты:</b></p>
+                        <ul> 
+                          <li>Экранирование данных.</li>
+                          <li>Валидация данных на стороне сервера и клиента.</li>
+                          <li>Использование Content Security Policy (CSP) для ограничения выполнения неподтвержденных скриптов.</li>
+                          <li>Внедрение HTTP-заголовков, таких как <code class="page-info__code">X-Content-Type-Options</code>, <code class="page-info__code">X-Frame-Options</code>, <code class="page-info__code">X-XSS-Protection</code>.</li>
+                        </ul>
+                      </li>
+                      <li> 
+                        <p> <b>Различия между HTTP и HTTPS</b></p>
+                        <p> <b>HTTP (Hypertext Transfer Protocol)</b>: Это протокол для передачи данных в виде текста. Все данные передаются в открытом виде, что делает его уязвимым к атакам типа "Man-in-the-Middle" (MITM), где злоумышленник может перехватывать и изменять передаваемые данные.</p>
+                        <p> <b>HTTPS (Hypertext Transfer Protocol Secure)</b>: Это защищенный вариант HTTP, который использует шифрование SSL/TLS для защиты данных. HTTPS обеспечивает конфиденциальность, целостность данных и аутентификацию сервера, что делает его безопасным для передачи конфиденциальной информации (например, данных кредитных карт).</p>
+                      </li>
+                    </ol>
+                  </li>
+                  <li> 
+                    <p>Примеры:</p>
+                    <p> <b>Опасный код с innerHTML:</b></p>
+                    <pre><code class="language-javascript">const userContent = "&lt;img src=x onerror=alert('XSS') /&gt;";
+document.getElementById('content').innerHTML = userContent; // Опасно!
+</code></pre>
+                    <p>Вместо этого следует использовать безопасные методы вставки текста, например textContent:</p>
+                    <pre><code class="language-javascript">const userContent = "&lt;img src=x onerror=alert('XSS') /&gt;";
+document.getElementById('content').textContent = userContent; // Безопасно</code></pre>
+                    <p> <b>Опасный код с eval:</b></p>
+                    <pre><code class="language-javascript">const userInput = "alert('XSS')";
+eval(userInput); // Опасно!</code></pre>
+                    <p>Вместо использования eval, можно использовать более безопасные конструкции, такие как функции и методы.</p>
+                    <p> <b>Экранирование пользовательского ввода:</b></p>
+                    <p>Использование библиотек для экранирования, таких как DOMPurify:</p>
+                    <pre><code class="language-javascript">import DOMPurify from 'dompurify';
+
+const userInput = "&lt;script&gt;alert('XSS')&lt;/script&gt;";
+const safeHTML = DOMPurify.sanitize(userInput);
+document.getElementById('content').innerHTML = safeHTML; // Безопасно</code></pre>
+                    <p> <b>Экранирование пользовательского ввода:</b></p>
+                    <p>Используйте регулярные выражения или библиотеки для валидации и фильтрации данных:</p>
+                    <pre><code class="language-javascript">const sanitizeInput = (input) = > input.replace(/[&lt;&gt;]/g, '');
+
+const userInput = "&lt;script&gt;alert('XSS')&lt;/script&gt;";
+const safeInput = sanitizeInput(userInput);
+console.log(safeInput); // "scriptalert('XSS')script" </code></pre>
+                    <p> <b>Использование CSP:</b></p>
+                    <p>CSP помогает предотвратить XSS-атаки, ограничивая источники, откуда могут быть загружены скрипты:</p>
+                    <pre><code class="language-html">meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"</code></pre>
+                    <p> <b>HTTP-запрос:</b></p>
+                    <pre><code class="language-http">GET /login HTTP/1.1
+// Host: example.com</code></pre>
+                    <p>Все данные передаются в открытом виде, и злоумышленник может легко перехватить их.</p>
+                    <p> <b>HTTPS-запрос:</b></p>
+                    <pre><code class="language-http">GET /login HTTPS/1.1
+// Host: example.com
+</code></pre>
+                    <p>Данные шифруются SSL/TLS, что делает их невидимыми для злоумышленников.</p>
+                  </li>
+                  <li> 
+                    <p>Практика</p>
+                    <ul> 
+                      <li>Создайте простую HTML-страницу, где пользователь может вводить текст, и реализуйте безопасное отображение этого текста с использованием textContent.</li>
+                      <li>Добавьте библиотеку DOMPurify и реализуйте очистку пользовательского ввода перед вставкой в innerHTML.</li>
+                      <li>Реализуйте простую форму ввода на сайте и проверьте, как работает экранирование с помощью регулярных выражений.</li>
+                      <li>Настройте Content Security Policy (CSP) на вашем сайте и протестируйте, как это влияет на выполнение внешних скриптов.</li>
+                      <li>Настройте HTTPS для вашего локального сервера разработки, используя mkcert или другой инструмент для создания самоподписанных сертификатов.</li>
+                      <li>Сравните HTTP и HTTPS-запросы с помощью браузерных инструментов разработчика и проверьте, что данные передаются безопасно в случае HTTPS.</li>
+                    </ul>
+                  </li>
+                </ol>
+              </div>
+            </section>
+    </div>
+    <div class="to-top"></div>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.modal.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+    <script src="js/prism.js"></script>
+    <script src="js/svg4everybody.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>$(document).ready(function () {	svg4everybody({});});</script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
